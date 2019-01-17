@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -16,10 +19,10 @@ import frc.robot.commands.DriveStandard;
  * Drive Subsystem
  */
 public class Drive extends Subsystem {
-  Talon driveLeftFront;
-  Talon driveLeftBack;
-  Talon driveRightFront;
-  Talon driveRightBack;
+  TalonSRX driveLeftFront;
+  TalonSRX driveLeftBack;
+  TalonSRX driveRightFront;
+  TalonSRX driveRightBack;
 
   RobotMap hardware;
 
@@ -38,10 +41,10 @@ public class Drive extends Subsystem {
      hardware = new RobotMap();
    }
   public void set(double speed, double turn) {
-    driveLeftFront.set(speed + turn);
-    driveLeftBack.set(speed + turn);
-    driveRightFront.set(speed - turn);
-    driveRightBack.set(speed - turn);
+    driveLeftFront.set(ControlMode.PercentOutput, speed + turn);
+    driveLeftBack.set(ControlMode.PercentOutput, speed + turn);
+    driveRightFront.set(ControlMode.PercentOutput, speed + turn);
+    driveRightBack.set(ControlMode.PercentOutput, speed + turn);
   }
 
   @Override
