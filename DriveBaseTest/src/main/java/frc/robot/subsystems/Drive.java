@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveStandard;
@@ -19,12 +18,13 @@ import frc.robot.commands.DriveStandard;
  * Drive Subsystem
  */
 public class Drive extends Subsystem {
-  TalonSRX driveLeftFront;
-  TalonSRX driveLeftBack;
-  TalonSRX driveRightFront;
-  TalonSRX driveRightBack;
+  RobotMap hardware = new RobotMap();
+  TalonSRX driveLeftFront = new TalonSRX(hardware.DRIVE_LEFT_FRONT_TALON);
+  TalonSRX driveLeftBack = new TalonSRX(hardware.DRIVE_LEFT_BACK_TALON);
+  TalonSRX driveRightFront = new TalonSRX(hardware.DRIVE_RIGHT_FRONT_TALON);
+  TalonSRX driveRightBack = new TalonSRX(hardware.DRIVE_RIGHT_BACK_TALON);
 
-  RobotMap hardware;
+
 
 
   public static Drive instance;
@@ -38,11 +38,10 @@ public class Drive extends Subsystem {
     
    public Drive()
    {
-     hardware = new RobotMap();
    }
   public void set(double speed, double turn) {
-    driveLeftFront.set(ControlMode.PercentOutput, speed + turn);
-    driveLeftBack.set(ControlMode.PercentOutput, speed + turn);
+    driveLeftFront.set(ControlMode.PercentOutput, -(speed - turn));
+    driveLeftBack.set(ControlMode.PercentOutput, -(speed - turn));
     driveRightFront.set(ControlMode.PercentOutput, speed + turn);
     driveRightBack.set(ControlMode.PercentOutput, speed + turn);
   }

@@ -16,11 +16,10 @@ package frc.robot;
 public class RobotMap {
 
 
-  public int DRIVE_RIGHT_FRONT_TALON = 2;
-  public int DRIVE_RIGHT_BACK_TALON = 3;
-  public int DRIVE_LEFT_FRONT_TALON = 5;
-  public int DRIVE_LEFT_BACK_TALON = 6;
-
+  public int DRIVE_RIGHT_FRONT_TALON = 5;
+  public int DRIVE_RIGHT_BACK_TALON = 6;
+  public int DRIVE_LEFT_FRONT_TALON = 3;
+  public int DRIVE_LEFT_BACK_TALON = 2;
 
   
 }

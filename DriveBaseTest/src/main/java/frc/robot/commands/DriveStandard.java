@@ -25,9 +25,10 @@ public class DriveStandard extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double left = Robot.m_oi.joy1.getY();
-    double right = Robot.m_oi.joy1.getX();
-    Robot.drive.set(left, right);
+    double speed = Robot.m_oi.getY();
+    double turn = Robot.m_oi.getX();
+  
+    Robot.drive.set(speed, turn);
   }
 
   // Make this return true when this Command no longer needs to run execute()
