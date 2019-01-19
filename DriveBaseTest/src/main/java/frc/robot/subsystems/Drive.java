@@ -40,10 +40,10 @@ public class Drive extends Subsystem {
    {
    }
   public void set(double speed, double turn) {
-    driveLeftFront.set(ControlMode.PercentOutput, -(speed - turn));
-    driveLeftBack.set(ControlMode.PercentOutput, -(speed - turn));
-    driveRightFront.set(ControlMode.PercentOutput, speed + turn);
-    driveRightBack.set(ControlMode.PercentOutput, speed + turn);
+    driveLeftFront.set(ControlMode.PercentOutput, speed + turn);
+    driveLeftBack.set(ControlMode.PercentOutput, speed + turn);
+    driveRightFront.set(ControlMode.PercentOutput, -(speed - turn));
+    driveRightBack.set(ControlMode.PercentOutput, -(speed - turn));
   }
 
   @Override

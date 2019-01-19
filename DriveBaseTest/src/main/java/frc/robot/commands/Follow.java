@@ -7,13 +7,24 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class DriveStandard extends Command {
-  public DriveStandard() {
+public class Follow extends Command {
+  private double dx;
+  private NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
+  private NetworkTableEntry tx;
+
+  private double da;
+  private NetworkTableEntry ta;
+
+  public Follow() {
     requires(Robot.drive);
   }
 
@@ -25,10 +36,15 @@ public class DriveStandard extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed = Robot.m_oi.getY();
-    double turn = Robot.m_oi.getX();
-  
-    Robot.drive.set(-speed, turn);
+    tx = limelightTable.getEntry("tx");
+    dx = tx.getDouble(0);
+    ta = limelightTable.getEntry("ta");
+    da = ta.getDouble(0);
+   if(da < 10){
+    Robot.drive.set(.2 , .6 * (dx / 26));
+
+   }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,11 +56,13 @@ public class DriveStandard extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.drive.set(0,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.drive.set(0,0);
   }
 }
