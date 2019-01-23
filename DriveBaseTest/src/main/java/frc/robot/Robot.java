@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Gyro;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +27,9 @@ import frc.robot.subsystems.Drive;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Drive drive;
+  public static Gyro gyro;
+  // public static ADIS16448_IMU gyro;
+
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -37,6 +42,12 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     drive = new Drive();
     m_oi = new OI();
+    gyro = new Gyro();
+    // gyro = new ADIS16448_IMU();
+
+    // gyro.reset();
+    log();
+
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -52,6 +63,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    log();
+
   }
 
   /**
@@ -106,10 +119,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    log();
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -120,7 +136,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    log();
+
     Scheduler.getInstance().run();
+    log();
+
   }
 
   /**
@@ -128,5 +148,19 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  private void log() {
+    SmartDashboard.putNumber("Gyro-X", gyro.getAngleX());
+    SmartDashboard.putNumber("Gyro-Y", gyro.getAngleY());
+    SmartDashboard.putNumber("Gyro-Z", gyro.getAngleZ());
+    
+    SmartDashboard.putNumber("Accel-X", gyro.getAccelX());
+    SmartDashboard.putNumber("Accel-Y", gyro.getAccelY());
+    SmartDashboard.putNumber("Accel-Z", gyro.getAccelZ());
+    
+    SmartDashboard.putNumber("Pitch", gyro.getPitch());
+    SmartDashboard.putNumber("Roll", gyro.getRoll());
+    SmartDashboard.putNumber("Yaw", gyro.getYaw());
   }
 }

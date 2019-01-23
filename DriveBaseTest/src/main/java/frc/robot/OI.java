@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.command.*;
+import frc.robot.commands.Follow;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -17,6 +19,33 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
   public Joystick joy1 = new Joystick(0);
+  public Button button1 = new JoystickButton(joy1,1);
+
+  public OI(){
+    
+    button1.whileHeld(new Follow());
+
+  }
+
+
+
+  public double getY(){
+    if(Math.abs(joy1.getRawAxis(1)) < .05){
+      return 0;
+    }
+    else{
+      return joy1.getRawAxis(1);
+    }
+  }
+
+  public double getX(){
+    if(Math.abs(joy1.getRawAxis(4)) < .05){
+      return 0;
+    }
+    else{
+      return joy1.getRawAxis(4);
+    }
+  }
 
 
   
