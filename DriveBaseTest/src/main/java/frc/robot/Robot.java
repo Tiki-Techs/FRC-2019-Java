@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Drive drive;
   public static Gyro gyro;
+  int testNum;
   // public static ADIS16448_IMU gyro;
 
 
@@ -43,11 +44,12 @@ public class Robot extends TimedRobot {
     drive = new Drive();
     m_oi = new OI();
     gyro = new Gyro();
+
+    testNum = 0;
     // gyro = new ADIS16448_IMU();
 
     // gyro.reset();
-    log();
-
+    
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -64,7 +66,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     log();
-
+    testNum += 1;
   }
 
   /**
@@ -124,8 +126,6 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    log();
-
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -136,11 +136,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    log();
-
     Scheduler.getInstance().run();
-    log();
-
   }
 
   /**
@@ -150,7 +146,7 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 
-  private void log() {
+  public void log() {
     SmartDashboard.putNumber("Gyro-X", gyro.getAngleX());
     SmartDashboard.putNumber("Gyro-Y", gyro.getAngleY());
     SmartDashboard.putNumber("Gyro-Z", gyro.getAngleZ());
@@ -162,5 +158,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Pitch", gyro.getPitch());
     SmartDashboard.putNumber("Roll", gyro.getRoll());
     SmartDashboard.putNumber("Yaw", gyro.getYaw());
+
+    SmartDashboard.putNumber("testNum", testNum);
   }
 }
