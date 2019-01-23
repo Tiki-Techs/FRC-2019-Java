@@ -40,10 +40,10 @@ public class Follow extends Command {
     dx = tx.getDouble(0);
     ta = limelightTable.getEntry("ta");
     da = ta.getDouble(0);
-   if(da < 10){
+  
     Robot.drive.set(.2 , .6 * (dx / 26));
 
-   }
+
     
   }
 
