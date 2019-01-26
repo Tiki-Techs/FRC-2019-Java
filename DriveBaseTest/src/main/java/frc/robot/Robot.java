@@ -41,9 +41,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    drive = new Drive();
+    drive = Drive.getInstance();
     m_oi = new OI();
-    gyro = new Gyro();
+    gyro = Gyro.getInstance();
 
     testNum = 0;
     // gyro = new ADIS16448_IMU();
@@ -147,7 +147,7 @@ public class Robot extends TimedRobot {
   }
 
   public void log() {
-    SmartDashboard.putNumber("Gyro-X", gyro.getAngleX());
+    SmartDashboard.putNumber("Gyro-X", gyro.getAngleZ());
     SmartDashboard.putNumber("Gyro-Y", gyro.getAngleY());
     SmartDashboard.putNumber("Gyro-Z", gyro.getAngleZ());
     
@@ -159,6 +159,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Roll", gyro.getRoll());
     SmartDashboard.putNumber("Yaw", gyro.getYaw());
 
-    SmartDashboard.putNumber("testNum", testNum);
+
+    SmartDashboard.putNumber("DriveLeftNeoEncoderVel", drive.getLeftNeoEncoderVel());
+    SmartDashboard.putNumber("DriveRightNeoEncoderVel", drive.getRightNeoEncoderVel());
   }
 }

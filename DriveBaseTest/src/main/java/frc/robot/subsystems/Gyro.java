@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Drive Subsystem
  */
 public class Gyro extends Subsystem {
-  public ADIS16448_IMU gyro;
+  public ADIS16448_IMU gyro = new ADIS16448_IMU();
 
 
 
@@ -32,7 +32,6 @@ public class Gyro extends Subsystem {
    }
     
    public Gyro(){
-    gyro = new ADIS16448_IMU();
     gyro.reset();
    }
    
