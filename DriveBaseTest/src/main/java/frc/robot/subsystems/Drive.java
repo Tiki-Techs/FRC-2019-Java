@@ -7,8 +7,8 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.*;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -19,10 +19,10 @@ import frc.robot.commands.DriveStandard;
  */
 public class Drive extends Subsystem {
   RobotMap hardware = new RobotMap();
-  TalonSRX driveLeftFront = new TalonSRX(hardware.DRIVE_LEFT_FRONT_TALON);
-  TalonSRX driveLeftBack = new TalonSRX(hardware.DRIVE_LEFT_BACK_TALON);
-  TalonSRX driveRightFront = new TalonSRX(hardware.DRIVE_RIGHT_FRONT_TALON);
-  TalonSRX driveRightBack = new TalonSRX(hardware.DRIVE_RIGHT_BACK_TALON);
+  CANSparkMax driveLeftBack = new CANSparkMax(hardware.DRIVE_LEFT_BACK_SPARK, MotorType.kBrushless);
+  CANSparkMax driveRightBack = new CANSparkMax(hardware.DRIVE_RIGHT_BACK_SPARK, MotorType.kBrushless);
+  
+
 
 
 
@@ -38,13 +38,20 @@ public class Drive extends Subsystem {
     
    public Drive()
    {
+     driveRightBack.setInverted(true);
    }
 
   public void set(double speed, double turn) {
-    driveLeftFront.set(ControlMode.PercentOutput, speed + turn);
-    driveLeftBack.set(ControlMode.PercentOutput, speed + turn);
-    driveRightFront.set(ControlMode.PercentOutput, -(speed - turn));
-    driveRightBack.set(ControlMode.PercentOutput, -(speed - turn));
+    driveLeftBack.set(speed + turn);
+    driveRightBack.set(speed - turn);
+  }
+
+  //returns motor velocity for transmission NEOs
+  public double getLeftNeoEncoder(){
+      return driveLeftBack.getEncoder().getVelocity();
+  }
+  public double getRightNeoEncoder(){
+    return driveRightBack.getEncoder().getVelocity();
   }
 
   @Override

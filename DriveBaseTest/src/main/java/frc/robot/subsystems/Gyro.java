@@ -31,10 +31,10 @@ public class Gyro extends Subsystem {
    return instance;
    }
     
-   public Gyro(){
-    gyro = new ADIS16448_IMU();
-    gyro.reset();
-   }
+    private Gyro(){
+      gyro = new ADIS16448_IMU();
+      gyro.reset();
+    }
    
 // Accessors for Angles
    public double getAngleX(){
