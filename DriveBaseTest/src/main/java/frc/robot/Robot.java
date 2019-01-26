@@ -159,6 +159,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Roll", gyro.getRoll());
     SmartDashboard.putNumber("Yaw", gyro.getYaw());
 
-    SmartDashboard.putNumber("testNum", testNum);
+
+    SmartDashboard.putNumber("DriveLeftNeoEncoderVel", drive.getLeftNeoEncoder());
+    SmartDashboard.putNumber("DriveRightNeoEncoderVel", drive.getRightNeoEncoder());
   }
 }
