@@ -8,7 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.command.*;
+import frc.robot.commands.ClimbVictorsForward;
 import frc.robot.commands.Follow;
+import frc.robot.commands.ShiftSpeed;
+import frc.robot.commands.ShiftTorque;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -19,13 +22,25 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
   public Joystick joy1 = new Joystick(0);
-  public Button button1 = new JoystickButton(joy1,1);
+  public Button button1 = new JoystickButton(joy1,1),
+                button2 = new JoystickButton(joy1,2),
+                button3 = new JoystickButton(joy1,3),
+                button4 = new JoystickButton(joy1,4),
+                button5 = new JoystickButton(joy1,5),
+                button6 = new JoystickButton(joy1,6),
+                button7 = new JoystickButton(joy1,7),
+                button8 = new JoystickButton(joy1,8);
 
   public OI(){
     
     button1.whileHeld(new Follow());
 
+    button2.whenPressed(new ShiftTorque());
+    button3.whenPressed(new ShiftSpeed());
+
+    button4.whileHeld(new ClimbVictorsForward());
   }
+
 
 
 
