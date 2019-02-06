@@ -17,8 +17,8 @@ import frc.robot.RobotMap;
 
 
 public class ClimbVictors extends Subsystem {
-  VictorSP test1 = new VictorSP(Robot.hardware.CLIMB_VICTOR_LEFT);
-  VictorSP test2 = new VictorSP(Robot.hardware.CLIMB_VICTOR_RIGHT);
+  VictorSP climb1 = new VictorSP(Robot.hardware.CLIMB_VICTOR_LEFT);
+  VictorSP climb2 = new VictorSP(Robot.hardware.CLIMB_VICTOR_RIGHT);
 
 
  
@@ -39,7 +39,7 @@ public class ClimbVictors extends Subsystem {
     
     
    public void set(double speed){
-     test1.set(speed);
+     climb1.set(speed);
     //  test2.set(speed);
    }
   @Override

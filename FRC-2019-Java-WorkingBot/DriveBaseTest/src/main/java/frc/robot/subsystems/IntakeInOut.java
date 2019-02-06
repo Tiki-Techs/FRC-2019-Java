@@ -10,39 +10,41 @@ package frc.robot.subsystems;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-
-
-/**
- * Drive Subsystem
- */
-public class ShiftSolenoid extends Subsystem {
-  DoubleSolenoid shift;
+import frc.robot.RobotMap;
 
 
 
+public class IntakeInOut extends Subsystem {
+ DoubleSolenoid intakeInOutSolenoid = new DoubleSolenoid(Robot.hardware.INTAKE_IN_OUT_SOLENOID_1, Robot.hardware.INTAKE_IN_OUT_SOLENOID_2);
+ 
+  public static IntakeInOut instance;
+  public static IntakeInOut getInstance() {
 
-  public static ShiftSolenoid instance;
-
-  public static ShiftSolenoid getInstance() {
     if (instance == null){
-    instance = new ShiftSolenoid();
+    instance = new IntakeInOut();
     }
    return instance;
    }
-    
-    private ShiftSolenoid(){
-      shift = new DoubleSolenoid(Robot.hardware.SHIFT_SOLENOID_1, Robot.hardware.SHIFT_SOLENOID_2);
-    }
 
-   public void setForward(){
-     shift.set(Value.kForward);
-   }
-   public void setBackward(){
-     shift.set(Value.kReverse);
-   }
+   private IntakeInOut(){
+ 
+  }
+
+    
+    
+  public void setOut(){
+    intakeInOutSolenoid.set(Value.kForward);
+  }
+
+  public void setIn(){
+    intakeInOutSolenoid.set(Value.kReverse);
+  }
+  
+  
   @Override
   public void initDefaultCommand() {
   }

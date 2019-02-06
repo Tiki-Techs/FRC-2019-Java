@@ -16,14 +16,27 @@ package frc.robot;
 public class RobotMap {
 
 
+  public int DRIVE_LEFT_FRONT_SPARK = 0;
   public int DRIVE_LEFT_BACK_SPARK = 1;
-  public int DRIVE_RIGHT_BACK_SPARK = 0;
+  public int DRIVE_RIGHT_BACK_SPARK = 2;
+  public int DRIVE_RIGHT_FRONT_SPARK = 3;
 
-  public int TEST_SOLENOID_1 = 0;
-  public int TEST_SOLENOID_2 = 1;
 
-  public int CLIMB_VICTOR_LEFT = 0;
-  public int CLIMB_VICTOR_RIGHT = 1;
+  public int SHIFT_SOLENOID_1 = 0;
+  public int SHIFT_SOLENOID_2 = 1;
+
+  public int INTAKE_IN_OUT_SOLENOID_1 = 2;
+  public int INTAKE_IN_OUT_SOLENOID_2 = 3;
+
+  public int INTAKE_OPEN_CLOSE_SOLENOID_1 = 4;
+  public int INTAKE_OPEN_CLOSE_SOLENOID_2 = 5;
+
+  public int CLIMB_SOLENOID_1 = 6;
+  public int CLIMB_SOLENOID_2 = 7;
+
+  public int CLIMB_VICTOR_RIGHT = 0;
+  public int CLIMB_VICTOR_LEFT = 1;
+
 
   
 }

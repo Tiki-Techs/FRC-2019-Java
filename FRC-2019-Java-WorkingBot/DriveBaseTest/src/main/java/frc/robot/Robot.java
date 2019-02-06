@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.ClimbVictors;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyro;
+import frc.robot.subsystems.IntakeInOut;
+import frc.robot.subsystems.IntakeOpenClose;
 import frc.robot.subsystems.ShiftSolenoid;
 
 /**
@@ -32,6 +34,8 @@ public class Robot extends TimedRobot {
   public static ShiftSolenoid shiftSolenoid;
   public static RobotMap hardware;
   public static ClimbVictors climbVictors;
+  public static IntakeInOut intakeInOut;
+  public static IntakeOpenClose intakeOpenClose;
   int testNum;
   // public static ADIS16448_IMU gyro;
 
@@ -50,13 +54,18 @@ public class Robot extends TimedRobot {
      * Failure to do so may result in a null pointer exception
      */
     hardware = new RobotMap();
+
     climbVictors = ClimbVictors.getInstance();
     drive = Drive.getInstance();
     gyro = Gyro.getInstance();
     shiftSolenoid = ShiftSolenoid.getInstance();
-    m_oi = new OI();
+    intakeInOut = IntakeInOut.getInstance();
+    intakeOpenClose = IntakeOpenClose.getInstance();
 
+    m_oi = new OI();
     testNum = 0;
+
+    gyro.gyro.calibrate();
 
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());

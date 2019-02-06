@@ -19,8 +19,11 @@ import frc.robot.commands.DriveStandard;
  * Drive Subsystem
  */
 public class Drive extends Subsystem {
+  CANSparkMax driveLeftFront = new CANSparkMax(Robot.hardware.DRIVE_LEFT_FRONT_SPARK, MotorType.kBrushless);
   CANSparkMax driveLeftBack = new CANSparkMax(Robot.hardware.DRIVE_LEFT_BACK_SPARK, MotorType.kBrushless);
   CANSparkMax driveRightBack = new CANSparkMax(Robot.hardware.DRIVE_RIGHT_BACK_SPARK, MotorType.kBrushless);
+  CANSparkMax driveRightFront = new CANSparkMax(Robot.hardware.DRIVE_RIGHT_FRONT_SPARK, MotorType.kBrushless);
+
   
 
 
@@ -39,10 +42,13 @@ public class Drive extends Subsystem {
    public Drive()
    {
      driveRightBack.setInverted(true);
+     driveRightFront.setInverted(true);
    }
 
   public void set(double speed, double turn) {
+    driveLeftFront.set(speed + turn);
     driveLeftBack.set(speed + turn);
+    driveRightFront.set(speed - turn);
     driveRightBack.set(speed - turn);
   }
   

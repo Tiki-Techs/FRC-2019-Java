@@ -10,38 +10,38 @@ package frc.robot.subsystems;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-
-
-/**
- * Drive Subsystem
- */
-public class ShiftSolenoid extends Subsystem {
-  DoubleSolenoid shift;
+import frc.robot.RobotMap;
 
 
 
+public class IntakeOpenClose extends Subsystem {
+  DoubleSolenoid intakeOpenCloseSolenoid = new DoubleSolenoid(Robot.hardware.INTAKE_OPEN_CLOSE_SOLENOID_1, Robot.hardware.INTAKE_OPEN_CLOSE_SOLENOID_2);
+  
+ 
+  public static IntakeOpenClose instance;
+  public static IntakeOpenClose getInstance() {
 
-  public static ShiftSolenoid instance;
-
-  public static ShiftSolenoid getInstance() {
     if (instance == null){
-    instance = new ShiftSolenoid();
+    instance = new IntakeOpenClose();
     }
    return instance;
    }
-    
-    private ShiftSolenoid(){
-      shift = new DoubleSolenoid(Robot.hardware.SHIFT_SOLENOID_1, Robot.hardware.SHIFT_SOLENOID_2);
-    }
 
-   public void setForward(){
-     shift.set(Value.kForward);
+   private IntakeOpenClose(){
+  }
+
+    
+    
+   public void setOpen(){
+     intakeOpenCloseSolenoid.set(Value.kForward);
    }
-   public void setBackward(){
-     shift.set(Value.kReverse);
+
+   public void setClose(){
+     intakeOpenCloseSolenoid.set(Value.kReverse);
    }
   @Override
   public void initDefaultCommand() {
