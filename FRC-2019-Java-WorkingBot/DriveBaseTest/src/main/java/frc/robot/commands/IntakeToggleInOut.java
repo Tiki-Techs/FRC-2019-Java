@@ -7,58 +7,48 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class Follow extends Command {
-  private NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
-  private double dx;
-  private double da;
-
-  public Follow() {
-    requires(Robot.drive);
-    requires(Robot.gyro);
+public class IntakeToggleInOut extends Command {
+  public IntakeToggleInOut() {
+    requires(Robot.intakeInOut);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    dx = limelightTable.getEntry("tx").getDouble(0);
-    da = limelightTable.getEntry("ta").getDouble(0);
-  
-    Robot.drive.set(.2 , .6 * (dx / 26));
-
-
-    
+    if(Robot.intakeInOut.isIn()){
+      Robot.intakeInOut.setOut();
+    }
+    else{
+      Robot.intakeInOut.setIn();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drive.set(0,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drive.set(0,0);
   }
 }

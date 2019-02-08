@@ -44,7 +44,15 @@ public class IntakeInOut extends Subsystem {
     intakeInOutSolenoid.set(Value.kReverse);
   }
   
-  
+  public Boolean isIn(){
+    if(intakeInOutSolenoid.get().equals(Value.kReverse)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   @Override
   public void initDefaultCommand() {
   }

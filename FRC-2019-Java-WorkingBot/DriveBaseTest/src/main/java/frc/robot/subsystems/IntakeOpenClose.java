@@ -43,6 +43,15 @@ public class IntakeOpenClose extends Subsystem {
    public void setClose(){
      intakeOpenCloseSolenoid.set(Value.kReverse);
    }
+
+   public boolean isOpen(){
+     if(intakeOpenCloseSolenoid.get().equals(Value.kForward)){
+       return true;
+     }
+     else{
+       return false;
+     }
+   }
   @Override
   public void initDefaultCommand() {
   }

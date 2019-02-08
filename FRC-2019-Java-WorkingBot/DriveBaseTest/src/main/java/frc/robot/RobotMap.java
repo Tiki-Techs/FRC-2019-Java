@@ -28,8 +28,8 @@ public class RobotMap {
   public int INTAKE_IN_OUT_SOLENOID_1 = 2;
   public int INTAKE_IN_OUT_SOLENOID_2 = 3;
 
-  public int INTAKE_OPEN_CLOSE_SOLENOID_1 = 4;
-  public int INTAKE_OPEN_CLOSE_SOLENOID_2 = 5;
+  public int INTAKE_OPEN_CLOSE_SOLENOID_1 = 6;
+  public int INTAKE_OPEN_CLOSE_SOLENOID_2 = 7;
 
   public int CLIMB_SOLENOID_1 = 6;
   public int CLIMB_SOLENOID_2 = 7;

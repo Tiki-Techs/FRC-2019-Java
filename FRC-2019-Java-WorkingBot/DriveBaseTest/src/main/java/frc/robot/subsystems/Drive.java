@@ -68,7 +68,7 @@ public class Drive extends Subsystem {
       return driveLeftBack.getEncoder().getVelocity();
   }
   public double getRightNeoEncoder(){
-    return driveRightBack.getEncoder().getVelocity();
+    return driveRightBack.getEncoder().getVelocity(); 
   }
 
   @Override
