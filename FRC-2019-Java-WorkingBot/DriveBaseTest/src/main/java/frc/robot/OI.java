@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.command.*;
-import frc.robot.commands.ClimbVictorsForward;
 import frc.robot.commands.Follow;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeIn;
@@ -44,7 +43,6 @@ public class OI {
     button2.whenPressed(new ShiftTorque());
     button3.whenPressed(new ShiftSpeed());
 
-    // button4.whileHeld(new ClimbVic torsForward());
 
     button5.whenPressed(new IntakeToggleInOut());
     button6.whenPressed(new IntakeToggleOpen());

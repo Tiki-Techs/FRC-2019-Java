@@ -29,9 +29,10 @@ public class IntakeOpenClose extends Subsystem {
     instance = new IntakeOpenClose();
     }
    return instance;
-   }
+  }
 
    private IntakeOpenClose(){
+     
   }
 
     

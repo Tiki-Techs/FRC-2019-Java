@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.ClimbVictors;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.IntakeInOut;
@@ -33,7 +32,6 @@ public class Robot extends TimedRobot {
   public static Gyro gyro;
   public static ShiftSolenoid shiftSolenoid;
   public static RobotMap hardware;
-  public static ClimbVictors climbVictors;
   public static IntakeInOut intakeInOut;
   public static IntakeOpenClose intakeOpenClose;
   int testNum;
@@ -55,7 +53,6 @@ public class Robot extends TimedRobot {
      */
     hardware = new RobotMap();
 
-    climbVictors = ClimbVictors.getInstance();
     drive = Drive.getInstance();
     gyro = Gyro.getInstance();
     shiftSolenoid = ShiftSolenoid.getInstance();

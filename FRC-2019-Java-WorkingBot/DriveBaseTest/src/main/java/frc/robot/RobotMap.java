@@ -21,7 +21,6 @@ public class RobotMap {
   public int DRIVE_RIGHT_BACK_SPARK = 2;
   public int DRIVE_RIGHT_FRONT_SPARK = 3;
 
-
   public int SHIFT_SOLENOID_1 = 0;
   public int SHIFT_SOLENOID_2 = 1;
 
@@ -34,8 +33,8 @@ public class RobotMap {
   public int CLIMB_SOLENOID_1 = 6;
   public int CLIMB_SOLENOID_2 = 7;
 
-  public int CLIMB_VICTOR_RIGHT = 0;
-  public int CLIMB_VICTOR_LEFT = 1;
+  public int CLIMB_TALON_LEFT = 4;
+  public int CLIMB_TALON_RIGHT = 5;
 
 
   
