@@ -40,12 +40,20 @@ public class ScoreHatch extends Command {
   double desired_heading;
   double angleDifference;
   double turn;
+  double waypointY;
+  double waypointX;
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     //waypoint values in meters
     double waypointY = (Robot.hardware.kTargetHeight - Robot.hardware.kLimelightHeight) / Math.tan(Robot.limelight.getAngleY());
+    if(Robot.limelight.getAngleX() > 0){
+      waypointX = waypointY * Math.sin(Robot.limelight.getAngleX());
+    }
+    else{
+      waypointX = -(waypointY * Math.sin(Robot.limelight.getAngleX()));
+    }
     double waypointX = waypointY * Math.sin(Robot.limelight.getAngleX());
     Waypoint[] goal = new Waypoint[]{
       new Waypoint(waypointX, waypointY, Robot.limelight.getAngleOffset())
@@ -72,17 +80,18 @@ public class ScoreHatch extends Command {
     left = new EncoderFollower(modifier.getLeftTrajectory());
     right = new EncoderFollower(modifier.getRightTrajectory());
 
+    left.configureEncoder(Robot.drive.getLeftEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
+    right.configureEncoder(Robot.drive.getRightEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
+
+    left.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
+    right.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
   
-    left.configureEncoder(Robot.drive.getLeftEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
-    right.configureEncoder(Robot.drive.getRightEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
-
-    left.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
-    right.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
+    
 
 
     l = left.calculate(Robot.drive.getLeftEncoderPos());
@@ -101,7 +110,7 @@ public class ScoreHatch extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

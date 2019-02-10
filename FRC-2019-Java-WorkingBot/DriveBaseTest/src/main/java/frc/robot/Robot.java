@@ -167,21 +167,24 @@ public class Robot extends TimedRobot {
 
   public void log() {
 
-    // SmartDashboard.putNumber("testNum", testNum);
-    // SmartDashboard.putNumber("Gyro-X", gyro.getAngleZ());
-    // SmartDashboard.putNumber("Gyro-Y", gyro.getAngleY());
-    // SmartDashboard.putNumber("Gyro-Z", gyro.getAngleZ());
+    SmartDashboard.putNumber("testNum", testNum);
+    SmartDashboard.putNumber("Gyro-X", gyro.getAngleZ());
+    SmartDashboard.putNumber("Gyro-Y", gyro.getAngleY());
+    SmartDashboard.putNumber("Gyro-Z", gyro.getAngleZ());
     
-    // SmartDashboard.putNumber("Accel-X", gyro.getAccelX());
-    // SmartDashboard.putNumber("Accel-Y", gyro.getAccelY());
-    // SmartDashboard.putNumber("Accel-Z", gyro.getAccelZ());
+    SmartDashboard.putNumber("Accel-X", gyro.getAccelX());
+    SmartDashboard.putNumber("Accel-Y", gyro.getAccelY());
+    SmartDashboard.putNumber("Accel-Z", gyro.getAccelZ());
     
-    // SmartDashboard.putNumber("Pitch", gyro.getPitch());
-    // SmartDashboard.putNumber("Roll", gyro.getRoll());
-    // SmartDashboard.putNumber("Yaw", gyro.getYaw());
+    SmartDashboard.putNumber("Pitch", gyro.getPitch());
+    SmartDashboard.putNumber("Roll", gyro.getRoll());
+    SmartDashboard.putNumber("Yaw", gyro.getYaw());
 
 
-    // SmartDashboard.putNumber("DriveLeftNeoEncoderVel", drive.getLeftNeoEncoder());
-    // SmartDashboard.putNumber("DriveRightNeoEncoderVel", drive.getRightNeoEncoder());
+    SmartDashboard.putNumber("DriveLeftNeoEncoderVel", drive.getLeftNeoEncoder());
+    SmartDashboard.putNumber("DriveRightNeoEncoderVel", drive.getRightNeoEncoder());
+    SmartDashboard.putNumber("DriveEncoderLeftDist", drive.getLeftEncoderDist());
+    SmartDashboard.putNumber("DriveEncoderRightDist", drive.getRightEncoderDist());
+
   }
 }

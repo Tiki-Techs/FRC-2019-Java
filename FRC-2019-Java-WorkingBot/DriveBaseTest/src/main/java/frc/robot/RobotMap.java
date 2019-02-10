@@ -52,11 +52,11 @@ public class RobotMap {
 
   public double kMaxSpeedHigh = 15.5; // meters per second
   public double kMaxAccelHigh = 7.961504812;
-  public double kMaxJerkHigh = 0;
+  public double kMaxJerkHigh = 40;
 
   public double kMaxSpeedLow = 8; // meters per second
   public double kMaxAccelLow = 16.37795275;
-  public double kMaxJarkLow = 0;
+  public double kMaxJarkLow = 20;
 
   public double kWheelBaseWidth = .6477; // in meters
 

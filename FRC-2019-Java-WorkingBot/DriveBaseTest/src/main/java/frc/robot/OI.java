@@ -15,6 +15,7 @@ import frc.robot.commands.IntakeOpen;
 import frc.robot.commands.IntakeOut;
 import frc.robot.commands.IntakeToggleInOut;
 import frc.robot.commands.IntakeToggleOpen;
+import frc.robot.commands.ScoreHatch;
 import frc.robot.commands.ShiftSpeed;
 import frc.robot.commands.ShiftTorque;
 import edu.wpi.first.wpilibj.Joystick;
@@ -43,7 +44,8 @@ public class OI {
     button2.whenPressed(new ShiftTorque());
     button3.whenPressed(new ShiftSpeed());
 
-
+    // button4.whileHeld(new ScoreHatch());
+    
     button5.whenPressed(new IntakeToggleInOut());
     button6.whenPressed(new IntakeToggleOpen());
 
