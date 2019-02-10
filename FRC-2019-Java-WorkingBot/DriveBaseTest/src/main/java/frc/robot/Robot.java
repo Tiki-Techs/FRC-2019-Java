@@ -17,6 +17,7 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.IntakeInOut;
 import frc.robot.subsystems.IntakeOpenClose;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.ShiftSolenoid;
 
 /**
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
   public static RobotMap hardware;
   public static IntakeInOut intakeInOut;
   public static IntakeOpenClose intakeOpenClose;
+  public static Limelight limelight;
   int testNum;
   // public static ADIS16448_IMU gyro;
 
@@ -58,10 +60,12 @@ public class Robot extends TimedRobot {
     shiftSolenoid = ShiftSolenoid.getInstance();
     intakeInOut = IntakeInOut.getInstance();
     intakeOpenClose = IntakeOpenClose.getInstance();
+    limelight = Limelight.getInstance();
 
     m_oi = new OI();
     testNum = 0;
 
+    gyro.gyro.reset();
     gyro.gyro.calibrate();
 
     

@@ -17,13 +17,13 @@ import frc.robot.Robot;
  * Default drive command
  */
 public class Follow extends Command {
-  private NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
   private double dx;
   private double da;
 
   public Follow() {
     requires(Robot.drive);
     requires(Robot.gyro);
+    requires(Robot.limelight);
   }
 
   // Called just before this Command runs the first time
@@ -34,12 +34,7 @@ public class Follow extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    dx = limelightTable.getEntry("tx").getDouble(0);
-    da = limelightTable.getEntry("ta").getDouble(0);
-  
-    Robot.drive.set(.2 , .6 * (dx / 26));
-
-
+    Robot.drive.set(.4 , .6 * (Robot.limelight.getAngleX()/ 26));
     
   }
 

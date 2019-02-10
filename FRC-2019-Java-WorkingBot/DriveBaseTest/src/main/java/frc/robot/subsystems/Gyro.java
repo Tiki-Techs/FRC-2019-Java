@@ -33,7 +33,6 @@ public class Gyro extends Subsystem {
     
     private Gyro(){
       gyro = new ADIS16448_IMU();
-      gyro.reset();
     }
    
 // Accessors for Angles
