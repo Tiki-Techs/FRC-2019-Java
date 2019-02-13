@@ -36,8 +36,6 @@ public class Robot extends TimedRobot {
   public static IntakeInOut intakeInOut;
   public static IntakeOpenClose intakeOpenClose;
   public static Limelight limelight;
-  int testNum;
-  // public static ADIS16448_IMU gyro;
 
 
   Command m_autonomousCommand;
@@ -63,7 +61,6 @@ public class Robot extends TimedRobot {
     limelight = Limelight.getInstance();
 
     m_oi = new OI();
-    testNum = 0;
 
     gyro.gyro.reset();
     gyro.gyro.calibrate();
@@ -85,7 +82,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     log();
-    testNum += 1;
   }
 
   /**
@@ -167,18 +163,9 @@ public class Robot extends TimedRobot {
 
   public void log() {
 
-    SmartDashboard.putNumber("testNum", testNum);
     SmartDashboard.putNumber("Gyro-X", gyro.getAngleZ());
     SmartDashboard.putNumber("Gyro-Y", gyro.getAngleY());
     SmartDashboard.putNumber("Gyro-Z", gyro.getAngleZ());
-    
-    SmartDashboard.putNumber("Accel-X", gyro.getAccelX());
-    SmartDashboard.putNumber("Accel-Y", gyro.getAccelY());
-    SmartDashboard.putNumber("Accel-Z", gyro.getAccelZ());
-    
-    SmartDashboard.putNumber("Pitch", gyro.getPitch());
-    SmartDashboard.putNumber("Roll", gyro.getRoll());
-    SmartDashboard.putNumber("Yaw", gyro.getYaw());
 
 
     SmartDashboard.putNumber("DriveLeftNeoEncoderVel", drive.getLeftNeoEncoder());
