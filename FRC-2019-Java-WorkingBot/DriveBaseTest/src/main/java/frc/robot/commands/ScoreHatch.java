@@ -7,8 +7,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
@@ -19,6 +19,7 @@ import jaci.pathfinder.modifiers.TankModifier;
  * Default drive command
  */
 public class ScoreHatch extends Command {
+
   public ScoreHatch() {
     requires(Robot.drive);
     requires(Robot.gyro);
@@ -26,14 +27,8 @@ public class ScoreHatch extends Command {
     requires(Robot.shiftSolenoid);
   }
 
-  Trajectory.Config config;
-  Trajectory trajectory;
-  TankModifier modifier;
   EncoderFollower left;
   EncoderFollower right;
-  double maxSpeed;
-  double maxAccel;
-  double maxJerk;
   double l;
   double r;
   double gyro_heading;
@@ -41,24 +36,31 @@ public class ScoreHatch extends Command {
   double angleDifference;
   double turn;
   double waypointY;
-  double waypointX;
-
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    SmartDashboard.putString("Pathfinding InitStart", "Working");
     //waypoint values in meters
-    double waypointY = (Robot.hardware.kTargetHeight - Robot.hardware.kLimelightHeight) / Math.tan(Robot.limelight.getAngleY());
+    double waypointX = (Robot.hardware.kTargetHeight - Robot.hardware.kLimelightHeight) / Math.tan(Robot.limelight.getAngleY());
+    double waypointY;
+
+    SmartDashboard.putNumber("waypointX", waypointX);    
     if(Robot.limelight.getAngleX() > 0){
-      waypointX = waypointY * Math.sin(Robot.limelight.getAngleX());
+      waypointY = waypointX * Math.sin(Robot.limelight.getAngleX());
     }
     else{
-      waypointX = -(waypointY * Math.sin(Robot.limelight.getAngleX()));
+      waypointY = -(waypointX * Math.sin(Robot.limelight.getAngleX()));
     }
-    double waypointX = waypointY * Math.sin(Robot.limelight.getAngleX());
+
+    SmartDashboard.putNumber("waypointY", waypointY);
+    SmartDashboard.putNumber("angle offset", Robot.limelight.getAngleOffset());
+
     Waypoint[] goal = new Waypoint[]{
       new Waypoint(waypointX, waypointY, Robot.limelight.getAngleOffset())
     };
-    
+    double maxSpeed;
+    double maxAccel;
+    double maxJerk;
     if(Robot.shiftSolenoid.isInSpeed()){
       maxSpeed = Robot.hardware.kMaxSpeedHigh;
       maxAccel = Robot.hardware.kMaxAccelHigh;
@@ -69,11 +71,12 @@ public class ScoreHatch extends Command {
       maxAccel = Robot.hardware.kMaxAccelLow;
       maxJerk = Robot.hardware.kMaxJerkHigh;
     }
-    config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, .05, maxSpeed, maxAccel, maxJerk);
+    Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, .05, maxSpeed, maxAccel, maxJerk);
 
-    trajectory = Pathfinder.generate(goal, config);
+    Trajectory trajectory = Pathfinder.generate(goal, config);
+    
 
-    modifier = new TankModifier(trajectory);
+    TankModifier modifier = new TankModifier(trajectory);
 
     modifier.modify(Robot.hardware.kWheelBaseWidth);
 
@@ -85,6 +88,9 @@ public class ScoreHatch extends Command {
 
     left.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
     right.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
+
+    SmartDashboard.putString("Pathfinding initEnd", "Working Now");
+
   }
 
   // Called repeatedly when this Command is scheduled to run

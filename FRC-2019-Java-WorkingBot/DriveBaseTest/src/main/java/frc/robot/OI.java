@@ -44,7 +44,7 @@ public class OI {
     button2.whenPressed(new ShiftTorque());
     button3.whenPressed(new ShiftSpeed());
 
-    // button4.whileHeld(new ScoreHatch());
+    button4.whenPressed(new ScoreHatch());
     
     button5.whenPressed(new IntakeToggleInOut());
     button6.whenPressed(new IntakeToggleOpen());

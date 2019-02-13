@@ -45,7 +45,7 @@ public class ClimbTalons extends Subsystem {
  
    public void set(double speed){
      climbTalonLeft.set(ControlMode.PercentOutput, speed);
-     climbTalonRight.set(ControlMode.Position, climbTalonLeft.getSelectedSensorPosition());
+    //  climbTalonRight.set(ControlMode.Position, climbTalonLeft.getSelectedSensorPosition());
    }
   @Override
   public void initDefaultCommand() {

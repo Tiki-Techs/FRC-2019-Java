@@ -47,6 +47,7 @@ public class Drive extends Subsystem {
      driveRightEncoder.setDistancePerPulse(1);
     //  driveLeftEncoder.setDistancePerPulse(.0002337787); // in meters
     //  driveRightEncoder.setDistancePerPulse(.0002337787); // in meters
+    driveRightEncoder.setReverseDirection(true);
    }
 
   public void set(double speed, double turn) {
