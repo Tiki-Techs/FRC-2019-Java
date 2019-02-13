@@ -97,7 +97,7 @@ public class ScoreHatch extends Command {
   @Override
   protected void execute() {
   
-    
+     
 
 
     l = left.calculate(Robot.drive.getLeftEncoderPos());
