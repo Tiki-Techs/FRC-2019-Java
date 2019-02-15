@@ -35,11 +35,16 @@ public class RobotMap {
   public int INTAKE_OPEN_CLOSE_SOLENOID_1 = 6;
   public int INTAKE_OPEN_CLOSE_SOLENOID_2 = 7;
 
+  public int INTAKE_PAN_SPARK = 4;
+  public int INTAKE_PAN_LIMIT_LEFT = 8;
+  public int INTAKE_PAN_LIMIT_RIGHT = 9;
+
   public int CLIMB_SOLENOID_1 = 6;
   public int CLIMB_SOLENOID_2 = 7;
 
-  public int CLIMB_TALON_LEFT = 4;
-  public int CLIMB_TALON_RIGHT = 5;
+  public int CLIMB_TALON_LEFT = 5;
+  public int CLIMB_TALON_RIGHT = 6;
+
 
 
 

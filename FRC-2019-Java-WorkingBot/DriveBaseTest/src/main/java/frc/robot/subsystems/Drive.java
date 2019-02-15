@@ -43,10 +43,10 @@ public class Drive extends Subsystem {
    {
      driveRightBack.setInverted(true);
      driveRightFront.setInverted(true);
-     driveLeftEncoder.setDistancePerPulse(1);
-     driveRightEncoder.setDistancePerPulse(1);
-    //  driveLeftEncoder.setDistancePerPulse(.0002337787); // in meters
-    //  driveRightEncoder.setDistancePerPulse(.0002337787); // in meters
+    //  driveLeftEncoder.setDistancePerPulse(1);
+    //  driveRightEncoder.setDistancePerPulse(1);
+     driveLeftEncoder.setDistancePerPulse(.0002337787); // in meters
+     driveRightEncoder.setDistancePerPulse(.0002337787); // in meters
     driveRightEncoder.setReverseDirection(true);
    }
 

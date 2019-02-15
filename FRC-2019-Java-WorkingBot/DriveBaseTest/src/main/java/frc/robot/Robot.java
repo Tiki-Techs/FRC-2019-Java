@@ -17,6 +17,7 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.IntakeInOut;
 import frc.robot.subsystems.IntakeOpenClose;
+import frc.robot.subsystems.IntakePan;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.ShiftSolenoid;
 
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   public static IntakeInOut intakeInOut;
   public static IntakeOpenClose intakeOpenClose;
   public static Limelight limelight;
+  public static IntakePan intakePan;
 
 
   Command m_autonomousCommand;
@@ -59,6 +61,7 @@ public class Robot extends TimedRobot {
     intakeInOut = IntakeInOut.getInstance();
     intakeOpenClose = IntakeOpenClose.getInstance();
     limelight = Limelight.getInstance();
+    intakePan = IntakePan.getInstance();
 
     m_oi = new OI();
 
@@ -172,6 +175,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("DriveRightNeoEncoderVel", drive.getRightNeoEncoder());
     SmartDashboard.putNumber("DriveEncoderLeftDist", drive.getLeftEncoderDist());
     SmartDashboard.putNumber("DriveEncoderRightDist", drive.getRightEncoderDist());
+
+    SmartDashboard.putNumber("IntakePanEncoderPos", intakePan.getEncoderPos());
+
 
   }
 }

@@ -49,11 +49,6 @@ public class OI {
     button5.whenPressed(new IntakeToggleInOut());
     button6.whenPressed(new IntakeToggleOpen());
 
-
-  
-
-    // button6.whenPressed(new IntakeClose());
-
   }
 
 
@@ -74,6 +69,23 @@ public class OI {
     }
     else{
       return joy1.getRawAxis(4);
+    }
+  }
+
+  public double getTriggerRight(){
+    if(joy1.getRawAxis(3) < .05){
+      return 0;
+    }
+    else{
+      return joy1.getRawAxis(3);
+    }
+  }
+  public double getTriggerLeft(){
+    if(joy1.getRawAxis(2) < .05){
+      return 0;
+    }
+    else{
+      return joy1.getRawAxis(2);
     }
   }
 

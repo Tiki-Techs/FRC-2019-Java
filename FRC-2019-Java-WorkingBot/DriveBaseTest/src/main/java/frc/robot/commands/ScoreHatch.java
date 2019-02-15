@@ -56,6 +56,7 @@ public class ScoreHatch extends Command {
     SmartDashboard.putNumber("angle offset", Robot.limelight.getAngleOffset());
 
     Waypoint[] goal = new Waypoint[]{
+      new Waypoint(0,0,0),
       new Waypoint(waypointX, waypointY, Robot.limelight.getAngleOffset())
     };
     double maxSpeed;
