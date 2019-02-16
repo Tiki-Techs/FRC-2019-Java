@@ -26,14 +26,14 @@ public class RobotMap {
   public int DRIVE_RIGHT_ENCODER_1 = 2;
   public int DRIVE_RIGHT_ENCODER_2 = 3;
 
-  public int SHIFT_SOLENOID_1 = 0;
-  public int SHIFT_SOLENOID_2 = 1;
+  public int SHIFT_SOLENOID_1 = 6;
+  public int SHIFT_SOLENOID_2 = 7;
 
   public int INTAKE_IN_OUT_SOLENOID_1 = 2;
   public int INTAKE_IN_OUT_SOLENOID_2 = 3;
 
-  public int INTAKE_OPEN_CLOSE_SOLENOID_1 = 6;
-  public int INTAKE_OPEN_CLOSE_SOLENOID_2 = 7;
+  public int INTAKE_OPEN_CLOSE_SOLENOID_1 = 0;
+  public int INTAKE_OPEN_CLOSE_SOLENOID_2 = 1;
 
   public int INTAKE_PAN_SPARK = 4;
   public int INTAKE_PAN_LIMIT_LEFT = 8;
@@ -42,8 +42,11 @@ public class RobotMap {
   public int CLIMB_SOLENOID_1 = 6;
   public int CLIMB_SOLENOID_2 = 7;
 
-  public int CLIMB_TALON_LEFT = 5;
-  public int CLIMB_TALON_RIGHT = 6;
+  public int CLIMB_VICTOR_LEFT = 5;
+  public int CLIMB_VICTOR_RIGHT = 6;
+
+  public int PCM_INTAKE_SHIFT = 0;
+  public int PCM_CLIMB = 1;
 
 
 
@@ -55,11 +58,11 @@ public class RobotMap {
   public double kTargetHeight = 0.725775155; // in meters
   
 
-  public double kMaxSpeedHigh = 15.5; // meters per second
+  public double kMaxSpeedHigh = 4.7244; // meters per second
   public double kMaxAccelHigh = 7.961504812;
   public double kMaxJerkHigh = 40;
 
-  public double kMaxSpeedLow = 8; // meters per second
+  public double kMaxSpeedLow = 2.4384; // meters per second
   public double kMaxAccelLow = 16.37795275;
   public double kMaxJarkLow = 20;
 

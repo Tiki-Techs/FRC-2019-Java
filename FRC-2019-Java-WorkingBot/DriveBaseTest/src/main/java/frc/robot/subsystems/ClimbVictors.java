@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -20,32 +21,28 @@ import frc.robot.commands.DriveStandard;
 /**
  * Drive Subsystem
  */
-public class ClimbTalons extends Subsystem {
-  TalonSRX climbTalonLeft = new TalonSRX(Robot.hardware.CLIMB_TALON_LEFT);
-  TalonSRX climbTalonRight = new TalonSRX(Robot.hardware.CLIMB_TALON_RIGHT);
+public class ClimbVictors extends Subsystem {
+  VictorSP climbVictorLeft = new VictorSP(Robot.hardware.CLIMB_VICTOR_LEFT);
+  VictorSP climbVictorRight = new VictorSP(Robot.hardware.CLIMB_VICTOR_RIGHT);
 
 
-
-  public static ClimbTalons instance;
-  public static ClimbTalons getInstance() {
+  public static ClimbVictors instance;
+  public static ClimbVictors getInstance() {
 
     if (instance == null) {
-    instance = new ClimbTalons();
+    instance = new ClimbVictors();
     }
    return instance;
    }
     
-   public ClimbTalons()
+   public ClimbVictors()
    {
-     //Right Talon runs a PID based on the position of the Left
-     climbTalonLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-     climbTalonRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
    }
 
  
    public void set(double speed){
-     climbTalonLeft.set(ControlMode.PercentOutput, speed);
-    //  climbTalonRight.set(ControlMode.Position, climbTalonLeft.getSelectedSensorPosition());
+    //  climbVictorLeft.set(speed);
+     climbVictorRight.set(speed);
    }
   @Override
   public void initDefaultCommand() {
