@@ -8,6 +8,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.command.*;
+import frc.robot.commands.ClimbGrab;
+import frc.robot.commands.ClimbRampDown;
+import frc.robot.commands.ClimbRelease;
+import frc.robot.commands.ClimbVictorsDown;
+import frc.robot.commands.ClimbVictorsUp;
 import frc.robot.commands.Follow;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeIn;
@@ -18,6 +23,7 @@ import frc.robot.commands.IntakeToggleOpen;
 import frc.robot.commands.ScoreHatch;
 import frc.robot.commands.ShiftSpeed;
 import frc.robot.commands.ShiftTorque;
+import frc.robot.commands.ToggleClimbRamp;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -37,18 +43,40 @@ public class OI {
                 button7 = new JoystickButton(joy1,7),
                 button8 = new JoystickButton(joy1,8);
 
+  public Joystick joy2 = new Joystick(1);
+  public Button joy2button1 = new JoystickButton(joy2,1),
+                joy2button2 = new JoystickButton(joy2,2),
+                joy2button3 = new JoystickButton(joy2,3),
+                joy2button4 = new JoystickButton(joy2,4),
+                joy2button5 = new JoystickButton(joy2,5),
+                joy2button6 = new JoystickButton(joy2,6),
+                joy2button7 = new JoystickButton(joy2,7),
+                joy2button8 = new JoystickButton(joy2,8);
+
   public OI(){
     
+    //controller 1
     button1.whileHeld(new Follow());
 
     button2.whenPressed(new ShiftTorque());
     button3.whenPressed(new ShiftSpeed());
 
-    button4.whenPressed(new ScoreHatch());
+    button4.whileHeld(new ScoreHatch());
     
     button5.whenPressed(new IntakeToggleInOut());
     button6.whenPressed(new IntakeToggleOpen());
 
+
+    //controller 2
+
+    joy2button1.whenPressed(new ClimbGrab());
+    joy2button3.whenPressed(new ToggleClimbRamp());
+    joy2button4.whenPressed(new ClimbRelease());
+    joy2button5.whileHeld(new ClimbVictorsUp());
+    joy2button6.whileHeld(new ClimbVictorsDown());
+
+    joy2button7.whenPressed(new IntakeToggleInOut());
+    joy2button8.whenPressed(new IntakeToggleOpen());
   }
 
 
@@ -87,6 +115,24 @@ public class OI {
     else{
       return joy1.getRawAxis(2);
     }
+  }
+
+
+    public double getJoy2TriggerRight(){
+      if(joy2.getRawAxis(3) < .05){
+        return 0;
+      }
+      else{
+        return joy2.getRawAxis(3);
+      }
+    }
+    public double getJoy2TriggerLeft(){
+      if(joy2.getRawAxis(2) < .05){
+        return 0;
+      }
+      else{
+        return joy2.getRawAxis(2);
+      }
   }
 
 

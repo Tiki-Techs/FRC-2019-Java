@@ -35,14 +35,14 @@ public class ShiftSolenoid extends Subsystem {
     
     private ShiftSolenoid(){
       //hardware is isntance of robotmap
-      shift = new DoubleSolenoid(Robot.hardware.SHIFT_SOLENOID_1, Robot.hardware.SHIFT_SOLENOID_2);
+      shift = new DoubleSolenoid(Robot.hardware.PCM_1, Robot.hardware.SHIFT_SOLENOID_1, Robot.hardware.SHIFT_SOLENOID_2);
     }
 
    public void setSpeed(){
-     shift.set(Value.kForward);
+     shift.set(Value.kReverse);
    }
    public void setTorque(){
-     shift.set(Value.kReverse);
+     shift.set(Value.kForward);
    }
 
    public boolean isInSpeed(){

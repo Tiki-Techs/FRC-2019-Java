@@ -19,7 +19,7 @@ import frc.robot.RobotMap;
 
 
 public class IntakeInOut extends Subsystem {
- DoubleSolenoid intakeInOutSolenoid = new DoubleSolenoid(Robot.hardware.INTAKE_IN_OUT_SOLENOID_1, Robot.hardware.INTAKE_IN_OUT_SOLENOID_2);
+ DoubleSolenoid intakeInOutSolenoid = new DoubleSolenoid(Robot.hardware.PCM_1, Robot.hardware.INTAKE_IN_OUT_SOLENOID_1, Robot.hardware.INTAKE_IN_OUT_SOLENOID_2);
  
   public static IntakeInOut instance;
   public static IntakeInOut getInstance() {

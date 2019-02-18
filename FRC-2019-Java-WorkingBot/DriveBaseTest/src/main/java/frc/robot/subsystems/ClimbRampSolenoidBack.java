@@ -10,49 +10,49 @@ package frc.robot.subsystems;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
+
+
+/**
+ * Drive Subsystem
+ */
+public class ClimbRampSolenoidBack extends Subsystem {
+  DoubleSolenoid rampSolenoid = new DoubleSolenoid(Robot.hardware.PCM_1, Robot.hardware.CLIMB_RAMP_BACK_SOLENOID_1, Robot.hardware.CLIMB_RAMP_BACK_SOLENOID_2);
 
 
 
-public class IntakeOpenClose extends Subsystem {
-  DoubleSolenoid intakeOpenCloseSolenoid = new DoubleSolenoid(Robot.hardware.PCM_0, Robot.hardware.INTAKE_OPEN_CLOSE_SOLENOID_1, Robot.hardware.INTAKE_OPEN_CLOSE_SOLENOID_2);
-  
- 
-  public static IntakeOpenClose instance;
-  public static IntakeOpenClose getInstance() {
 
+  public static ClimbRampSolenoidBack instance;
+
+  public static ClimbRampSolenoidBack getInstance() {
     if (instance == null){
-    instance = new IntakeOpenClose();
+    instance = new ClimbRampSolenoidBack();
     }
    return instance;
+   }
+    
+    private ClimbRampSolenoidBack(){
+      //hardware is isntance of robotmap
+    }
+
+   public void setDown(){
+     rampSolenoid.set(Value.kReverse);
+   }
+   public void setUp(){
+    rampSolenoid.set(Value.kForward);
   }
 
-   private IntakeOpenClose(){
-     
+  public boolean isUp(){
+    if(rampSolenoid.get().equals(Value.kForward)){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
-    
-    
-   public void setOpen(){
-     intakeOpenCloseSolenoid.set(Value.kForward);
-   }
-
-   public void setClose(){
-     intakeOpenCloseSolenoid.set(Value.kReverse);
-   }
-
-   public boolean isOpen(){
-     if(intakeOpenCloseSolenoid.get().equals(Value.kForward)){
-       return true;
-     }
-     else{
-       return false;
-     }
-   }
   @Override
   public void initDefaultCommand() {
   }

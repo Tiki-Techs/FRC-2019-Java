@@ -26,8 +26,8 @@ public class RobotMap {
   public int DRIVE_RIGHT_ENCODER_1 = 2;
   public int DRIVE_RIGHT_ENCODER_2 = 3;
 
-  public int SHIFT_SOLENOID_1 = 6;
-  public int SHIFT_SOLENOID_2 = 7;
+  public int SHIFT_SOLENOID_1 = 4;
+  public int SHIFT_SOLENOID_2 = 5;
 
   public int INTAKE_IN_OUT_SOLENOID_1 = 2;
   public int INTAKE_IN_OUT_SOLENOID_2 = 3;
@@ -38,15 +38,19 @@ public class RobotMap {
   public int INTAKE_PAN_SPARK = 4;
   public int INTAKE_PAN_LIMIT_LEFT = 8;
   public int INTAKE_PAN_LIMIT_RIGHT = 9;
+  public int INTAKE_PAN_LINE_SENSOR = 4;
 
-  public int CLIMB_SOLENOID_1 = 6;
-  public int CLIMB_SOLENOID_2 = 7;
+  public int CLIMB_RAMP_BACK_SOLENOID_1 = 6;
+  public int CLIMB_RAMP_BACK_SOLENOID_2 = 7;
 
-  public int CLIMB_VICTOR_LEFT = 5;
-  public int CLIMB_VICTOR_RIGHT = 6;
+  public int CLIMB_GRABBERS_SOLENOID_1 = 2;
+  public int CLIMB_GRABBERS_SOLENOID_2 = 3;
 
-  public int PCM_INTAKE_SHIFT = 0;
-  public int PCM_CLIMB = 1;
+  public int CLIMB_VICTOR_LEFT = 0;
+  public int CLIMB_VICTOR_RIGHT = 1;
+
+  public int PCM_0 = 0;
+  public int PCM_1 = 1;
 
 
 

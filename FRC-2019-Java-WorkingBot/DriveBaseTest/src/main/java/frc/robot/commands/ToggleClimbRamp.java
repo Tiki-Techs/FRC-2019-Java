@@ -7,15 +7,14 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class IntakePanOIControl extends Command {
-  public IntakePanOIControl() {
-    requires(Robot.intakePan);
+public class ToggleClimbRamp extends Command {
+  public ToggleClimbRamp() {
+    requires(Robot.climbRampSolenoid);
   }
 
   // Called just before this Command runs the first time
@@ -27,36 +26,18 @@ public class IntakePanOIControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_oi.getTriggerLeft() < .3 && Robot.m_oi.getTriggerRight() < .3)
-    {
-      if(!(Robot.intakePan.getLimitLeft() || Robot.intakePan.getLimitRight())){
-       Robot.intakePan.set(Robot.m_oi.getJoy2TriggerRight() - Robot.m_oi.getJoy2TriggerLeft());
-      }
-      else if(Robot.intakePan.getLimitLeft()){
-       Robot.intakePan.set(Robot.m_oi.getJoy2TriggerRight());
-      }
-      else{
-        Robot.intakePan.set(-Robot.m_oi.getJoy2TriggerLeft());
-      }
+    if(Robot.climbRampSolenoid.isUp()){
+      Robot.climbRampSolenoid.setDown();
     }
     else{
-      if(Robot.m_oi.getTriggerLeft() >= .3 && !Robot.intakePan.getLimitLeft() && !Robot.intakePan.getLineSensor()){
-        Robot.intakePan.set(-1);
-      }
-      else if(Robot.m_oi.getTriggerRight() >= .3 && !Robot.intakePan.getLimitRight() && !Robot.intakePan.getLineSensor()){
-        Robot.intakePan.set(1);
-      }
-      else{
-        Robot.intakePan.set(0);
-      }
+      Robot.climbRampSolenoid.setUp();
     }
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

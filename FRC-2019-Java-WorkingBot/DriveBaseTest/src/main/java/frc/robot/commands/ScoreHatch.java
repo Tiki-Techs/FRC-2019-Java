@@ -39,21 +39,18 @@ public class ScoreHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    SmartDashboard.putString("Pathfinding InitStart", "Working");
     //waypoint values in meters
+    SmartDashboard.putBoolean("isDone", false);
+
     double waypointX = (Robot.hardware.kTargetHeight - Robot.hardware.kLimelightHeight) / Math.tan(Robot.limelight.getAngleY());
     double waypointY;
 
-    SmartDashboard.putNumber("waypointX", waypointX);    
     if(Robot.limelight.getAngleX() > 0){
       waypointY = waypointX * Math.sin(Robot.limelight.getAngleX());
     }
     else{
       waypointY = -(waypointX * Math.sin(Robot.limelight.getAngleX()));
     }
-
-    SmartDashboard.putNumber("waypointY", waypointY);
-    SmartDashboard.putNumber("angle offset", Robot.limelight.getAngleOffset());
 
     Waypoint[] goal = new Waypoint[]{
       new Waypoint(0,0,0),
@@ -77,21 +74,21 @@ public class ScoreHatch extends Command {
     Trajectory trajectory = Pathfinder.generate(goal, config);
     
 
-    TankModifier modifier = new TankModifier(trajectory);
+    SmartDashboard.putBoolean("isDone", true);
+    
 
-    modifier.modify(Robot.hardware.kWheelBaseWidth);
+    // TankModifier modifier = new TankModifier(trajectory);
 
-    left = new EncoderFollower(modifier.getLeftTrajectory());
-    right = new EncoderFollower(modifier.getRightTrajectory());
+    // modifier.modify(Robot.hardware.kWheelBaseWidth);
 
-    left.configureEncoder(Robot.drive.getLeftEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
-    right.configureEncoder(Robot.drive.getRightEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
+    // left = new EncoderFollower(modifier.getLeftTrajectory());
+    // right = new EncoderFollower(modifier.getRightTrajectory());
 
-    left.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
-    right.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
+    // left.configureEncoder(Robot.drive.getLeftEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
+    // right.configureEncoder(Robot.drive.getRightEncoderPos(), Robot.hardware.kDriveEncoderResolution, Robot.hardware.kWheelDiameter);
 
-    SmartDashboard.putString("Pathfinding initEnd", "Working Now");
-
+    // left.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
+    // right.configurePIDVA(1, 0, 0, 1 / maxSpeed, 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -101,16 +98,16 @@ public class ScoreHatch extends Command {
      
 
 
-    l = left.calculate(Robot.drive.getLeftEncoderPos());
-    r = right.calculate(Robot.drive.getRightEncoderPos());
+    // l = left.calculate(Robot.drive.getLeftEncoderPos());
+    // r = right.calculate(Robot.drive.getRightEncoderPos());
 
-    gyro_heading = Robot.gyro.getAngleZ();
-    desired_heading = Pathfinder.r2d(left.getHeading());  
+    // gyro_heading = Robot.gyro.getAngleZ();
+    // desired_heading = Pathfinder.r2d(left.getHeading());  
 
-    angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
-    turn = 0.8 * (-1.0/80.0) * angleDifference;
+    // angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
+    // turn = 0.8 * (-1.0/80.0) * angleDifference;
 
-    Robot.drive.setLeftRight(l + turn, r - turn);
+    // Robot.drive.setLeftRight(l + turn, r - turn);
     
   }
 

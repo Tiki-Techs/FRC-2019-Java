@@ -43,11 +43,10 @@ public class Drive extends Subsystem {
    {
      driveRightBack.setInverted(true);
      driveRightFront.setInverted(true);
-    //  driveLeftEncoder.setDistancePerPulse(1);
-    //  driveRightEncoder.setDistancePerPulse(1);
-     driveLeftEncoder.setDistancePerPulse(.0002337787); // in meters
-     driveRightEncoder.setDistancePerPulse(.0002337787); // in meters
-    driveRightEncoder.setReverseDirection(true);
+     driveLeftEncoder.setDistancePerPulse(1);
+     driveRightEncoder.setDistancePerPulse(1);
+    //  driveLeftEncoder.setDistancePerPulse(.0002337787); // in meters
+    //  driveRightEncoder.setDistancePerPulse(.0002337787); // in meters
    }
 
   public void set(double speed, double turn) {
@@ -83,12 +82,6 @@ public class Drive extends Subsystem {
     return driveRightBack.getEncoder().getVelocity(); 
   }
 
-  public int getLeftEncoderPos(){
-    return (int) driveLeftEncoder.getDistance();
-  }
-  public int getRightEncoderPos(){
-    return (int) driveRightEncoder.getDistance();
-  }
 
   public double getLeftEncoderDist(){
     return driveLeftEncoder.getDistance(); //* .0002337787;

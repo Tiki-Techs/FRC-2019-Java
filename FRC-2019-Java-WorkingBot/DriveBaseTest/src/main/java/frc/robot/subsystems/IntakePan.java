@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
@@ -27,7 +28,8 @@ import frc.robot.commands.IntakePanOIControl;
 public class IntakePan extends Subsystem {
   CANSparkMax panMotor = new CANSparkMax(Robot.hardware.INTAKE_PAN_SPARK, MotorType.kBrushed);
   DigitalInput limitSwitchLeft = new DigitalInput(Robot.hardware.INTAKE_PAN_LIMIT_LEFT);
-  DigitalInput limitSwitchRight = new DigitalInput(Robot.hardware.INTAKE_PAN_LIMIT_RIGHT);
+  DigitalInput limitSwitchRight = new DigitalInput(Robot.hardware.INTAKE_PAN_LIMIT_RIGHT); 
+  DigitalInput lineSensor = new DigitalInput(Robot.hardware.INTAKE_PAN_LINE_SENSOR);
 
 
 
@@ -46,6 +48,9 @@ public class IntakePan extends Subsystem {
    }
 
  
+   public boolean getLineSensor(){
+     return lineSensor.get();
+   }
    public boolean getLimitLeft(){
      return !limitSwitchLeft.get();
    }
@@ -56,6 +61,9 @@ public class IntakePan extends Subsystem {
    public double getEncoderPos(){
      return panMotor.getEncoder().getPosition();
    }
+   // center is -11.819
+
+   
 
    public void set(double speed){
      panMotor.set(speed);

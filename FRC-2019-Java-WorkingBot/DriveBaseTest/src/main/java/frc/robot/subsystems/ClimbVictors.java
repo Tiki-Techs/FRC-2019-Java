@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.ClimbVictorsOIControl;
 import frc.robot.commands.DriveStandard;
 
 /**
@@ -37,15 +38,16 @@ public class ClimbVictors extends Subsystem {
     
    public ClimbVictors()
    {
+     climbVictorRight.setInverted(true);
    }
 
  
    public void set(double speed){
-    //  climbVictorLeft.set(speed);
+     climbVictorLeft.set(speed);
      climbVictorRight.set(speed);
    }
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new DriveStandard());    
+    //setDefaultCommand(new ClimbVictorsOIControl());
   }
 }

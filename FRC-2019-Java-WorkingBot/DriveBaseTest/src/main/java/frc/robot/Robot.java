@@ -8,11 +8,16 @@
 package frc.robot;
 
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.autonomous.AutoDriveTest;
+import frc.robot.subsystems.ClimbGrabbers;
+import frc.robot.subsystems.ClimbRampSolenoidBack;
+import frc.robot.subsystems.ClimbVictors;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.IntakeInOut;
@@ -38,6 +43,9 @@ public class Robot extends TimedRobot {
   public static IntakeOpenClose intakeOpenClose;
   public static Limelight limelight;
   public static IntakePan intakePan;
+  public static ClimbVictors climbVictors;
+  public static ClimbGrabbers climbGrabbers;
+  public static ClimbRampSolenoidBack climbRampSolenoid;
 
 
   Command m_autonomousCommand;
@@ -62,6 +70,11 @@ public class Robot extends TimedRobot {
     intakeOpenClose = IntakeOpenClose.getInstance();
     limelight = Limelight.getInstance();
     intakePan = IntakePan.getInstance();
+    climbVictors = ClimbVictors.getInstance();
+    climbGrabbers = ClimbGrabbers.getInstance();
+    climbRampSolenoid = ClimbRampSolenoidBack.getInstance();
+    CameraServer.getInstance().startAutomaticCapture();
+
 
     m_oi = new OI();
 
@@ -69,8 +82,7 @@ public class Robot extends TimedRobot {
     gyro.gyro.calibrate();
 
     
-    // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    m_chooser.setDefaultOption("Default Auto", new AutoDriveTest());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
 
@@ -177,6 +189,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("DriveEncoderRightDist", drive.getRightEncoderDist());
 
     SmartDashboard.putNumber("IntakePanEncoderPos", intakePan.getEncoderPos());
+
+    SmartDashboard.putBoolean("IntakePanLineSensor", intakePan.getLineSensor());
 
 
   }
