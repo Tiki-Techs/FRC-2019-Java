@@ -43,6 +43,9 @@ public class IntakeInOut extends Subsystem {
   public void setIn(){
     intakeInOutSolenoid.set(Value.kReverse);
   }
+  public void setOff(){
+    intakeInOutSolenoid.set(Value.kOff);
+  }
   
   public Boolean isIn(){
     if(intakeInOutSolenoid.get().equals(Value.kReverse)){

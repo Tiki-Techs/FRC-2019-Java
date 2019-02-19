@@ -38,7 +38,6 @@ public class ClimbVictors extends Subsystem {
     
    public ClimbVictors()
    {
-     climbVictorRight.setInverted(true);
    }
 
  

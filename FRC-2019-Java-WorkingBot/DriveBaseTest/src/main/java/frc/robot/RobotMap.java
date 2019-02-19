@@ -43,8 +43,11 @@ public class RobotMap {
   public int CLIMB_RAMP_BACK_SOLENOID_1 = 6;
   public int CLIMB_RAMP_BACK_SOLENOID_2 = 7;
 
-  public int CLIMB_GRABBERS_SOLENOID_1 = 2;
-  public int CLIMB_GRABBERS_SOLENOID_2 = 3;
+  public int CLIMB_GRABBERS_SOLENOID_1 = 6;//
+  public int CLIMB_GRABBERS_SOLENOID_2 = 7;//
+
+  public int CLIMB_FLIP_UP_SOLENOID_1 = 2;
+  public int CLIMB_FLIP_UP_SOLENOID_2 = 3;
 
   public int CLIMB_VICTOR_LEFT = 0;
   public int CLIMB_VICTOR_RIGHT = 1;

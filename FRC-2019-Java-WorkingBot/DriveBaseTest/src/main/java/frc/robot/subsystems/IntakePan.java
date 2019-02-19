@@ -61,6 +61,9 @@ public class IntakePan extends Subsystem {
    public double getEncoderPos(){
      return panMotor.getEncoder().getPosition();
    }
+   public void setEncoderZero(){
+     panMotor.getEncoder().setPosition(0);
+   }
    // center is -11.819
 
    

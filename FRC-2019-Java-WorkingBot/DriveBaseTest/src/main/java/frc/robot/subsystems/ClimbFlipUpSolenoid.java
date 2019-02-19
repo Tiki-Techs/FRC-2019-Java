@@ -18,45 +18,41 @@ import frc.robot.Robot;
 /**
  * Drive Subsystem
  */
-public class ClimbRampSolenoidBack extends Subsystem {
-  DoubleSolenoid rampSolenoid = new DoubleSolenoid(Robot.hardware.PCM_1, Robot.hardware.CLIMB_RAMP_BACK_SOLENOID_1, Robot.hardware.CLIMB_RAMP_BACK_SOLENOID_2);
+public class ClimbFlipUpSolenoid extends Subsystem {
+  DoubleSolenoid climbFlipUp = new DoubleSolenoid(Robot.hardware.PCM_0, Robot.hardware.CLIMB_FLIP_UP_SOLENOID_1, Robot.hardware.CLIMB_FLIP_UP_SOLENOID_2);
 
 
 
 
-  public static ClimbRampSolenoidBack instance;
+  public static ClimbFlipUpSolenoid instance;
 
-  public static ClimbRampSolenoidBack getInstance() {
+  public static ClimbFlipUpSolenoid getInstance() {
     if (instance == null){
-    instance = new ClimbRampSolenoidBack();
+    instance = new ClimbFlipUpSolenoid();
     }
    return instance;
    }
     
-    private ClimbRampSolenoidBack(){
+    private ClimbFlipUpSolenoid(){
       //hardware is isntance of robotmap
     }
 
-   public void setDown(){
-     rampSolenoid.set(Value.kReverse);
-   }
    public void setUp(){
-    rampSolenoid.set(Value.kForward);
-  }
-
-  public void setOff(){
-    rampSolenoid.set(Value.kOff);
-  }
-
-  public boolean isUp(){
-    if(rampSolenoid.get().equals(Value.kForward)){
+     climbFlipUp.set(Value.kForward);
+   }
+   public void setDown(){
+     climbFlipUp.set(Value.kReverse);
+   }
+   public boolean isUp(){
+     if(climbFlipUp.get().equals(Value.kForward)){
       return true;
     }
-    else{
-      return false;
-    }
-  }
+     else{
+       return false;
+     }
+   }
 
+  
   @Override
   public void initDefaultCommand() {
   }

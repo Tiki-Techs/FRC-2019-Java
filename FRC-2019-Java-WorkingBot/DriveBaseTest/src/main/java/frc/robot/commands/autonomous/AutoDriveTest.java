@@ -27,6 +27,8 @@ public class AutoDriveTest extends Command {
   public AutoDriveTest() {
     requires(Robot.drive);
     requires(Robot.shiftSolenoid);
+    requires(Robot.limelight);
+    requires(Robot.intakePan);
   }
 
   // Called just before this Command runs the first time
@@ -36,7 +38,7 @@ public class AutoDriveTest extends Command {
     timer.reset();
     timer.start();
 
-    step0EndTime = 1;
+    step0EndTime = .05;
     step1EndTime = 1;
     step2EndTime = 1;
     step3EndTime = 1;
@@ -58,19 +60,50 @@ public class AutoDriveTest extends Command {
     return 3;
   }
 
+  private void shiftInitial(double time){
+    Robot.shiftSolenoid.setSpeed();
+  }
   private void forwardInitial(double time){
-    new IntakeOpen();
-    new IntakeClose();
+    Robot.drive.set(1,0);
   }
 
   private void turnToTarget(double time){
-    new Follow();
+    Robot.drive.turnTo(Robot.limelight.getAngleX());
   }
 
+  private void forward2(double time){
+    Robot.drive.set(.5, 0);
+  }
+  
   private void squareUp(double time){
     Robot.drive.set(.2, 0);
   }
-  
+
+  private void backUp(double time){
+    Robot.drive.set(-.2, 0);
+  }
+
+  private void alignIntake(double time){
+    if(!Robot.intakePan.getLineSensor() && !Robot.intakePan.getLimitLeft()){
+      Robot.intakePan.set(-1);
+    }
+    else if(!Robot.intakePan.getLineSensor() && !Robot.intakePan.getLimitRight()){
+      Robot.intakePan.set(1);
+    }
+    else{
+     Robot.intakePan.set(0);
+   }
+  }
+
+  private void score1(double time){
+    Robot.intakeInOut.setOut();
+    Robot.drive.set(.2, 0);
+  }
+
+  private void score2(double time){
+    Robot.intakeOpenClose.setOpen();
+    Robot.drive.set(-.1, 0);
+  }
   private void stop(double time){
     Robot.drive.set(0,0);
     Robot.intakePan.set(0);
@@ -86,15 +119,33 @@ public class AutoDriveTest extends Command {
 		// Call the behavior appropriate for the phase
 		switch (phase) {
 			case 0:
-				forwardInitial(time);
+				shiftInitial(time);
 				break;
 
 			case 1:
-				turnToTarget(time);
+				forwardInitial(time);
 				break;
 			case 2:
-				squareUp(time);
-				break;
+				forward2(time);
+        break;
+      case 3:
+        squareUp(time);
+        break;
+      case 4:
+        backUp(time);
+        break;
+      case 5:
+        alignIntake(time);
+        break;
+      case 6:
+        score1(time);
+        break;
+      case 7:
+        score2(time);
+        break;
+      case 8:
+        stop(time);
+        break;
 		}
   }
 

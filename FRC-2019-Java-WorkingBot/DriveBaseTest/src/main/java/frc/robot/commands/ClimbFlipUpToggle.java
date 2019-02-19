@@ -12,9 +12,9 @@ import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class ShiftSpeed extends Command {
-  public ShiftSpeed() {
-    requires(Robot.shiftSolenoid);
+public class ClimbFlipUpToggle extends Command {
+  public ClimbFlipUpToggle() {
+    requires(Robot.climbFlipUpSolenoid);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,12 @@ public class ShiftSpeed extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shiftSolenoid.setSpeed();
+    if(Robot.climbFlipUpSolenoid.isUp()){
+      Robot.climbFlipUpSolenoid.setDown();
+    }
+    else{
+      Robot.climbFlipUpSolenoid.setUp();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

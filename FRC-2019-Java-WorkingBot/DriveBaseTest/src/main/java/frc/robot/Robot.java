@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.autonomous.AutoDriveTest;
+import frc.robot.subsystems.ClimbFlipUpSolenoid;
 import frc.robot.subsystems.ClimbGrabbers;
 import frc.robot.subsystems.ClimbRampSolenoidBack;
 import frc.robot.subsystems.ClimbVictors;
@@ -46,6 +47,7 @@ public class Robot extends TimedRobot {
   public static ClimbVictors climbVictors;
   public static ClimbGrabbers climbGrabbers;
   public static ClimbRampSolenoidBack climbRampSolenoid;
+  public static ClimbFlipUpSolenoid climbFlipUpSolenoid;
 
 
   Command m_autonomousCommand;
@@ -73,6 +75,7 @@ public class Robot extends TimedRobot {
     climbVictors = ClimbVictors.getInstance();
     climbGrabbers = ClimbGrabbers.getInstance();
     climbRampSolenoid = ClimbRampSolenoidBack.getInstance();
+    climbFlipUpSolenoid = ClimbFlipUpSolenoid.getInstance();
     CameraServer.getInstance().startAutomaticCapture();
 
 
@@ -80,6 +83,8 @@ public class Robot extends TimedRobot {
 
     gyro.gyro.reset();
     gyro.gyro.calibrate();
+    intakePan.setEncoderZero();
+    drive.setEncoderZero();
 
     
     m_chooser.setDefaultOption("Default Auto", new AutoDriveTest());
@@ -151,6 +156,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    drive.setEncoderZero();
+    intakePan.setEncoderZero();
     
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
@@ -187,6 +194,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("DriveRightNeoEncoderVel", drive.getRightNeoEncoder());
     SmartDashboard.putNumber("DriveEncoderLeftDist", drive.getLeftEncoderDist());
     SmartDashboard.putNumber("DriveEncoderRightDist", drive.getRightEncoderDist());
+    SmartDashboard.putNumber("DriveLeftNeoEncoderPos", drive.getLeftNeoEncoderPos());
+    SmartDashboard.putNumber("DriveRightNeoEncoderPos", drive.getRightNeoEcoderPos());
 
     SmartDashboard.putNumber("IntakePanEncoderPos", intakePan.getEncoderPos());
 

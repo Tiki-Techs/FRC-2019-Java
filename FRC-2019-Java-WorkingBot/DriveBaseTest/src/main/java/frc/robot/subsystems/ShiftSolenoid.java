@@ -44,6 +44,9 @@ public class ShiftSolenoid extends Subsystem {
    public void setTorque(){
      shift.set(Value.kForward);
    }
+   public void setOff(){
+     shift.set(Value.kOff);
+   }
 
    public boolean isInSpeed(){
      if(shift.get().equals(Value.kForward)){
