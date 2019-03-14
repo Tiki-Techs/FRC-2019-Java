@@ -16,7 +16,7 @@ package frc.robot;
 public class RobotMap {
 
 
-  public int DRIVE_LEFT_FRONT_SPARK = 0;
+  public int DRIVE_LEFT_FRONT_SPARK = 5;
   public int DRIVE_LEFT_BACK_SPARK = 1;
   public int DRIVE_RIGHT_BACK_SPARK = 2;
   public int DRIVE_RIGHT_FRONT_SPARK = 3;

@@ -90,11 +90,11 @@ public class Drive extends Subsystem {
     return driveRightBack.getEncoder().getPosition() / 24.761;
   } // 24.761
 
-  public double getLeftEncoderDist(){
-    return driveLeftEncoder.getDistance(); //* .0002337787;
+  public int getLeftEncoderDist(){
+    return (int)(driveLeftEncoder.getDistance()); //* .0002337787;
   }
-  public double getRightEncoderDist(){
-    return - driveRightEncoder.getDistance(); //* .0002337787;
+  public int getRightEncoderDist(){
+    return (int)(- driveRightEncoder.getDistance()); //* .0002337787;
   }
 
   public void setEncoderZero(){
