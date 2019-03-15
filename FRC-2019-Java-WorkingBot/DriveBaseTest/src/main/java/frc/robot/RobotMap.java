@@ -54,12 +54,12 @@ public class RobotMap {
   public int PCM_0 = 0;
   public int PCM_1 = 1;
 
-  public int CLIMB_RAMP_VICTOR
+  // public int CLIMB_RAMP_VICTOR
   
-  public int BALL_INTAKE_VICTOR
+  // public int BALL_INTAKE_VICTOR
 
-  public int CLIMB_NEO_LEFT
-  public int CLIMB_NEO_RIGHT
+  // public int CLIMB_NEO_LEFT
+  // public int CLIMB_NEO_RIGHT
 
 
 

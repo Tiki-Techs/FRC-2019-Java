@@ -9,9 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.*;
 import frc.robot.commands.ClimbGrab;
-import frc.robot.commands.ClimbNeosDown;
-import frc.robot.commands.ClimbNeosUp;
-import frc.robot.commands.ClimbRampDown;
+// import frc.robot.commands.ClimbNeosDown;
+// import frc.robot.commands.ClimbNeosUp;
+// import frc.robot.commands.ClimbRampDown;
 import frc.robot.commands.ClimbRelease;
 import frc.robot.commands.Follow;
 import frc.robot.commands.IntakePanCenter;
@@ -72,8 +72,8 @@ public class OI {
     joy2button2.whenPressed(new IntakeToggleInOut());
     joy2button3.whenPressed(new IntakeToggleOpen());
     joy2button4.whenPressed(new ClimbRelease());
-    joy2button5.whileHeld(new ClimbNeosUp());
-    joy2button6.whileHeld(new ClimbNeosDown());
+    // joy2button5.whileHeld(new ClimbNeosUp());
+    // joy2button6.whileHeld(new ClimbNeosDown());
     
 
 

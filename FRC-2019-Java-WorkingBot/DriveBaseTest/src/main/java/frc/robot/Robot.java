@@ -16,8 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.autonomous.AutoDriveTest;
 import frc.robot.subsystems.ClimbGrabbers;
-import frc.robot.subsystems.ClimbNeos;
-import frc.robot.subsystems.ClimbRampVictor;
+import frc.robot.subsystems.ClimbRampSolenoid;
+// import frc.robot.subsystems.ClimbNeos;
+// import frc.robot.subsystems.ClimbRampVictor;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.IntakeInOut;
@@ -43,9 +44,10 @@ public class Robot extends TimedRobot {
   public static IntakeOpenClose intakeOpenClose;
   public static Limelight limelight;
   public static IntakePan intakePan;
-  public static ClimbNeos climbNeos;
+  public static ClimbRampSolenoid climbRampSolenoid;
+  // public static ClimbNeos climbNeos;
   public static ClimbGrabbers climbGrabbers;
-  public static ClimbRampVictor climbRampVictor;
+  // public static ClimbRampVictor climbRampVictor;
 
 
   Command m_autonomousCommand;
@@ -70,9 +72,10 @@ public class Robot extends TimedRobot {
     intakeOpenClose = IntakeOpenClose.getInstance();
     limelight = Limelight.getInstance();
     intakePan = IntakePan.getInstance();
-    climbNeos = ClimbNeos.getInstance();
+    climbRampSolenoid = ClimbRampSolenoid.getInstance();
+    // climbNeos = ClimbNeos.getInstance();
     climbGrabbers = ClimbGrabbers.getInstance();
-    climbRampVictor = ClimbRampVictor.getInstance();
+    // climbRampVictor = ClimbRampVictor.getInstance();
     CameraServer.getInstance().startAutomaticCapture();
 
 
