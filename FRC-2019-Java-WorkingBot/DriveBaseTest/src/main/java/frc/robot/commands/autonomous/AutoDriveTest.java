@@ -83,17 +83,7 @@ public class AutoDriveTest extends Command {
     Robot.drive.set(-.2, 0);
   }
 
-  private void alignIntake(double time){
-    if(!Robot.intakePan.getLineSensor() && !Robot.intakePan.getLimitLeft()){
-      Robot.intakePan.set(-1);
-    }
-    else if(!Robot.intakePan.getLineSensor() && !Robot.intakePan.getLimitRight()){
-      Robot.intakePan.set(1);
-    }
-    else{
-     Robot.intakePan.set(0);
-   }
-  }
+ 
 
   private void score1(double time){
     Robot.intakeInOut.setOut();
@@ -134,16 +124,14 @@ public class AutoDriveTest extends Command {
       case 4:
         backUp(time);
         break;
+      
       case 5:
-        alignIntake(time);
-        break;
-      case 6:
         score1(time);
         break;
-      case 7:
+      case 6:
         score2(time);
         break;
-      case 8:
+      case 7:
         stop(time);
         break;
 		}

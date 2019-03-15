@@ -12,9 +12,9 @@ import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class ClimbVictorsUp extends Command {
-  public ClimbVictorsUp() {
-    requires(Robot.climbVictors);
+public class ClimbNeosDown extends Command {
+  public ClimbNeosDown() {
+    requires(Robot.climbNeos);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class ClimbVictorsUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   Robot.climbVictors.set(1);
+   Robot.climbNeos.set(-1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,13 +37,13 @@ public class ClimbVictorsUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climbVictors.set(0);
+    Robot.climbNeos.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.climbVictors.set(0);
+    Robot.climbNeos.set(0);
   }
 }

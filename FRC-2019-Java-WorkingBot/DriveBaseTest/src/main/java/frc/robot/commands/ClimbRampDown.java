@@ -14,7 +14,7 @@ import frc.robot.Robot;
  */
 public class ClimbRampDown extends Command {
   public ClimbRampDown() {
-    requires(Robot.climbRampSolenoid);
+    requires(Robot.climbRampVictor);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class ClimbRampDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climbRampSolenoid.setDown();
+    Robot.climbRampVictor.set(-.1);
   }
 
   // Make this return true when this Command no longer needs to run execute()

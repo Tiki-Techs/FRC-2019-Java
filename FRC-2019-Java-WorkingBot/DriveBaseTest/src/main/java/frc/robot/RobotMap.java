@@ -49,12 +49,17 @@ public class RobotMap {
   public int CLIMB_FLIP_UP_SOLENOID_1 = 2;
   public int CLIMB_FLIP_UP_SOLENOID_2 = 3;
 
-  public int CLIMB_VICTOR_LEFT = 0;
-  public int CLIMB_VICTOR_RIGHT = 1;
+
 
   public int PCM_0 = 0;
   public int PCM_1 = 1;
 
+  public int CLIMB_RAMP_VICTOR
+  
+  public int BALL_INTAKE_VICTOR
+
+  public int CLIMB_NEO_LEFT
+  public int CLIMB_NEO_RIGHT
 
 
 

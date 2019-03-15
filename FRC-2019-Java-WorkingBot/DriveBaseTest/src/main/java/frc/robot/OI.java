@@ -8,24 +8,18 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.command.*;
-import frc.robot.commands.ClimbFlipUpToggle;
 import frc.robot.commands.ClimbGrab;
+import frc.robot.commands.ClimbNeosDown;
+import frc.robot.commands.ClimbNeosUp;
 import frc.robot.commands.ClimbRampDown;
 import frc.robot.commands.ClimbRelease;
-import frc.robot.commands.ClimbVictorsDown;
-import frc.robot.commands.ClimbVictorsUp;
 import frc.robot.commands.Follow;
-import frc.robot.commands.IntakeClose;
-import frc.robot.commands.IntakeIn;
-import frc.robot.commands.IntakeOpen;
-import frc.robot.commands.IntakeOut;
 import frc.robot.commands.IntakePanCenter;
 import frc.robot.commands.IntakeToggleInOut;
 import frc.robot.commands.IntakeToggleOpen;
 import frc.robot.commands.ScoreHatch;
 import frc.robot.commands.ShiftSpeed;
 import frc.robot.commands.ShiftTorque;
-import frc.robot.commands.ToggleClimbRamp;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -60,10 +54,11 @@ public class OI {
     //controller 1
     button1.whileHeld(new Follow());
 
+
     button2.whenPressed(new ShiftTorque());
     button3.whenPressed(new ShiftSpeed());
 
-    button4.whileHeld(new ScoreHatch());
+    // button4.whileHeld(new ScoreHatch());
     
     button5.whenPressed(new IntakeToggleInOut());
     button6.whenPressed(new IntakeToggleOpen());
@@ -74,14 +69,14 @@ public class OI {
     //controller 2
 
     joy2button1.whenPressed(new ClimbGrab());
-    joy2button7.whenPressed(new ToggleClimbRamp());
-    joy2button4.whenPressed(new ClimbRelease());
-    joy2button8.whenPressed(new ClimbFlipUpToggle());
-    joy2button5.whileHeld(new ClimbVictorsUp());
-    joy2button6.whileHeld(new ClimbVictorsDown());
-
     joy2button2.whenPressed(new IntakeToggleInOut());
     joy2button3.whenPressed(new IntakeToggleOpen());
+    joy2button4.whenPressed(new ClimbRelease());
+    joy2button5.whileHeld(new ClimbNeosUp());
+    joy2button6.whileHeld(new ClimbNeosDown());
+    
+
+
   }
 
 

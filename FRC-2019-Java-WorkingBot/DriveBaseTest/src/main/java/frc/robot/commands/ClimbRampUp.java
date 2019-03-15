@@ -12,9 +12,9 @@ import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class ClimbVictorsOIControl extends Command {
-  public ClimbVictorsOIControl() {
-    requires(Robot.climbVictors);
+public class ClimbRampUp extends Command {
+  public ClimbRampUp() {
+    requires(Robot.climbRampVictor);
   }
 
   // Called just before this Command runs the first time
@@ -25,9 +25,7 @@ public class ClimbVictorsOIControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.m_oi.joy2.getRawAxis(1)) > .05){
-      Robot.climbVictors.set(Robot.m_oi.joy2.getRawAxis(1));
-    }
+    Robot.climbRampVictor.set(.1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,13 +37,11 @@ public class ClimbVictorsOIControl extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climbVictors.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.climbVictors.set(0);
   }
 }

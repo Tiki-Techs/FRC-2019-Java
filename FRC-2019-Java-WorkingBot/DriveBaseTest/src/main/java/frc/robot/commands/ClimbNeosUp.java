@@ -12,42 +12,38 @@ import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class ToggleClimbRamp extends Command {
-  public ToggleClimbRamp() {
-    requires(Robot.climbRampSolenoid);
+public class ClimbNeosUp  extends Command {
+  public ClimbNeosUp() {
+    requires(Robot.climbNeos);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.climbRampSolenoid.isUp()){
-      Robot.climbRampSolenoid.setDown();
-    }
-    else{
-      Robot.climbRampSolenoid.setUp();
-    }
+   Robot.climbNeos.set(.1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.climbNeos.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.climbNeos.set(0);
   }
 }

@@ -8,42 +8,37 @@
 package frc.robot.subsystems;
 
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.commands.ClimbVictorsOIControl;
-import frc.robot.commands.DriveStandard;
+
 
 /**
  * Drive Subsystem
  */
-public class ClimbVictors extends Subsystem {
-  VictorSP climbVictorLeft = new VictorSP(Robot.hardware.CLIMB_VICTOR_LEFT);
-  VictorSP climbVictorRight = new VictorSP(Robot.hardware.CLIMB_VICTOR_RIGHT);
+public class ClimbNeos extends Subsystem {
+  CANSparkMax leftNeo = new CANSparkMax(Robot.hardware.CLIMB_NEO_LEFT, MotorType.kBrushless);
+  CANSparkMax rightNeo = new CANSparkMax(Robot.hardware.CLIMB_NEO_RIGHT, MotorType.kBrushless);
 
-
-  public static ClimbVictors instance;
-  public static ClimbVictors getInstance() {
+  public static ClimbNeos instance;
+  public static ClimbNeos getInstance() {
 
     if (instance == null) {
-    instance = new ClimbVictors();
+    instance = new ClimbNeos();
     }
    return instance;
    }
     
-   public ClimbVictors()
+   public ClimbNeos()
    {
    }
 
  
    public void set(double speed){
-     climbVictorLeft.set(speed);
-     climbVictorRight.set(speed);
+     leftNeo.set(speed);
+     rightNeo.set(speed);
    }
   @Override
   public void initDefaultCommand() {

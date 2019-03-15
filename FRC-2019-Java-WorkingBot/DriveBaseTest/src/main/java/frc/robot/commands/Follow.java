@@ -34,7 +34,7 @@ public class Follow extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drive.set(.4 , .4 * (Robot.limelight.getAngleX()/ 26));
+    Robot.drive.set(.3 , .4 * (Robot.limelight.getAngleX()/ 26));
     
   }
 
