@@ -139,7 +139,6 @@ public class SecondLevelHabStart extends Command {
 			case 0:
 				shiftInitial(time);
 				break;
-
 			case 1:
 				forwardInitial(time);
 				break;
@@ -152,7 +151,6 @@ public class SecondLevelHabStart extends Command {
       case 4:
         backUp(time);
         break;
-      
       case 5:
         score1(time);
         break;
