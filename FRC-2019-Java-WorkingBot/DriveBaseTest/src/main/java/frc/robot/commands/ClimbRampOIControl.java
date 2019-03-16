@@ -12,9 +12,9 @@ import frc.robot.Robot;
 /**
  * Default drive command
  */
-public class ClimbRampSolenoidToggle extends Command {
-  public ClimbRampSolenoidToggle() {
-    requires(Robot.climbRampSolenoid);
+public class ClimbRampOIControl extends Command {
+  public ClimbRampOIControl() {
+    requires(Robot.climbRampVictor);
   }
 
   // Called just before this Command runs the first time
@@ -25,17 +25,18 @@ public class ClimbRampSolenoidToggle extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.climbRampSolenoid.isUp()){
-      Robot.climbRampSolenoid.setUp();
+     if(Robot.climbRampSolenoid.isUp()){
+      Robot.climbRampVictor.set(0);
     }
     else{
-      Robot.climbRampSolenoid.setDown();
-    }  }
+      Robot.climbRampVictor.set(Robot.m_oi.getJoy2Y());
+    }
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

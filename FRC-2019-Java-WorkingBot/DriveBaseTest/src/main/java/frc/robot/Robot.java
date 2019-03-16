@@ -14,11 +14,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.autonomous.AutoDriveTest;
+import frc.robot.commands.autonomous.SecondLevelHabStart;
 import frc.robot.subsystems.ClimbGrabbers;
 import frc.robot.subsystems.ClimbRampSolenoid;
 // import frc.robot.subsystems.ClimbNeos;
-// import frc.robot.subsystems.ClimbRampVictor;
+import frc.robot.subsystems.ClimbRampVictor;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.IntakeInOut;
@@ -47,11 +47,11 @@ public class Robot extends TimedRobot {
   public static ClimbRampSolenoid climbRampSolenoid;
   // public static ClimbNeos climbNeos;
   public static ClimbGrabbers climbGrabbers;
-  // public static ClimbRampVictor climbRampVictor;
+  public static ClimbRampVictor climbRampVictor;
 
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  // Command m_autonomousCommand;
+  // SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
     climbRampSolenoid = ClimbRampSolenoid.getInstance();
     // climbNeos = ClimbNeos.getInstance();
     climbGrabbers = ClimbGrabbers.getInstance();
-    // climbRampVictor = ClimbRampVictor.getInstance();
+    climbRampVictor = ClimbRampVictor.getInstance();
     CameraServer.getInstance().startAutomaticCapture();
 
 
@@ -87,8 +87,8 @@ public class Robot extends TimedRobot {
     drive.setEncoderZero();
 
     
-    m_chooser.setDefaultOption("Default Auto", new AutoDriveTest());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    // m_chooser.setDefaultOption("Default Auto", new SecondLevelHabStart(true));
+    // SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
@@ -131,7 +131,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    // m_autonomousCommand = m_chooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -141,9 +141,9 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.start();
+    // }
   }
 
   /**
@@ -163,9 +163,9 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.cancel();
+    // }
   }
 
   /**

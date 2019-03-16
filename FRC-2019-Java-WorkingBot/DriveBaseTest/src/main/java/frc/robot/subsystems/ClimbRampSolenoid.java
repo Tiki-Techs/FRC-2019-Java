@@ -49,7 +49,7 @@ public class ClimbRampSolenoid extends Subsystem {
   }
 
   public boolean isUp(){
-    if(rampSolenoid.get().equals(Value.kForward)){
+    if(rampSolenoid.get().equals(Value.kReverse)){
       return true;
     }
     else{

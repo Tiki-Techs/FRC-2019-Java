@@ -25,7 +25,12 @@
 //   // Called repeatedly when this Command is scheduled to run
 //   @Override
 //   protected void execute() {
-//     Robot.climbRampVictor.set(.1);
+//     if(Robot.climbRampSolenoid.isUp()){
+//       Robot.climbRampVictor.set(0);
+//     }
+//     else{
+//       Robot.climbRampVictor.set(.1);
+//     }
 //   }
 
 //   // Make this return true when this Command no longer needs to run execute()

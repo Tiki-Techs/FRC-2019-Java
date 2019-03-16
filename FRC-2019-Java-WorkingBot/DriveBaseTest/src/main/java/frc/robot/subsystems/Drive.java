@@ -63,17 +63,7 @@ public class Drive extends Subsystem {
     driveRightBack.set(right);
   }
   
-  // turn to target angle
-  public void turnTo(double targetAngle){
-    Robot.gyro.gyro.reset();
-    double kPAngle = .5; //proportional control constant for turning
-    double currentAngle = 0;
-
-    while(Math.abs(targetAngle) - Math.abs(currentAngle) < 1){ // 1 degree error allowance
-      currentAngle = Robot.gyro.getAngleZ();
-      set(0, kPAngle * (1 - (Math.abs(currentAngle) / targetAngle)));
-    }
-  }
+  
   // returns motor velocity for transmission NEOs
   public double getLeftNeoEncoder(){
       return driveLeftBack.getEncoder().getVelocity();

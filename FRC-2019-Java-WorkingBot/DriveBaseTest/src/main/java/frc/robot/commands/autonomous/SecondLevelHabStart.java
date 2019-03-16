@@ -13,22 +13,27 @@ import frc.robot.Robot;
 import frc.robot.commands.Follow;
 import frc.robot.commands.IntakeClose;
 import frc.robot.commands.IntakeOpen;
+import frc.robot.commands.TurnTo;
 /**
  * Default drive command
  */
-public class AutoDriveTest extends Command {
+public class SecondLevelHabStart extends Command {
   Timer timer;
 
   private double step0EndTime;
   private double step1EndTime;
   private double step2EndTime;
   private double step3EndTime;
+  private boolean isLeft;
   
-  public AutoDriveTest() {
+  public SecondLevelHabStart(boolean left) {
     requires(Robot.drive);
     requires(Robot.shiftSolenoid);
     requires(Robot.limelight);
     requires(Robot.intakePan);
+    requires(Robot.intakeInOut);
+    requires(Robot.intakeOpenClose);
+    isLeft = left;
   }
 
   // Called just before this Command runs the first time
@@ -39,9 +44,9 @@ public class AutoDriveTest extends Command {
     timer.start();
 
     step0EndTime = .05;
-    step1EndTime = 1;
-    step2EndTime = 1;
-    step3EndTime = 1;
+    step1EndTime = .05;
+    step2EndTime = 1.05;
+    step3EndTime = 1.05;
   }
 
   private int phaseFor(double t){
@@ -67,20 +72,43 @@ public class AutoDriveTest extends Command {
     Robot.drive.set(1,0);
   }
 
+  private void turn90DegreesOne(double time){
+    if(isLeft){
+      TurnTo turnRight = new TurnTo(90);
+    }
+    else{
+      TurnTo turnLeft = new TurnTo(-90);
+    }
+  }
+  
+  private void lateralOne(double time){
+    Robot.drive.set(.3, 0);
+  }
+
+  private void turn90DegreesTwo(double time){
+    if(isLeft){
+      TurnTo turnLeft = new TurnTo(-100);
+    }
+    else{
+      TurnTo turnRight = new TurnTo(100);
+    }// slightly more than 90 to avoid mistargeting with vision
+  }
+
   private void turnToTarget(double time){
-    Robot.drive.turnTo(Robot.limelight.getAngleX());
+    TurnTo turnToTarget = new TurnTo(Robot.limelight.getAngleX());
   }
 
   private void forward2(double time){
-    Robot.drive.set(.5, 0);
+    Follow moveToTarget = new Follow();
   }
   
-  private void squareUp(double time){
-    Robot.drive.set(.2, 0);
+  private void releaseHatch(double time){
+    Robot.intakeOpenClose.setOpen();
   }
 
   private void backUp(double time){
     Robot.drive.set(-.2, 0);
+    Robot.intakeInOut.setIn();
   }
 
  
@@ -119,7 +147,7 @@ public class AutoDriveTest extends Command {
 				forward2(time);
         break;
       case 3:
-        squareUp(time);
+        turn90DegreesOne(time);
         break;
       case 4:
         backUp(time);

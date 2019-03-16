@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.*;
 import frc.robot.commands.ClimbGrab;
+import frc.robot.commands.ClimbRampSolenoidToggle;
 // import frc.robot.commands.ClimbNeosDown;
 // import frc.robot.commands.ClimbNeosUp;
 // import frc.robot.commands.ClimbRampDown;
@@ -20,6 +21,7 @@ import frc.robot.commands.IntakeToggleOpen;
 import frc.robot.commands.ScoreHatch;
 import frc.robot.commands.ShiftSpeed;
 import frc.robot.commands.ShiftTorque;
+import frc.robot.commands.TurnTo;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -59,7 +61,8 @@ public class OI {
     button3.whenPressed(new ShiftSpeed());
 
     // button4.whileHeld(new ScoreHatch());
-    
+    button4.whenPressed(new TurnTo(90));
+
     button5.whenPressed(new IntakeToggleInOut());
     button6.whenPressed(new IntakeToggleOpen());
 
@@ -74,6 +77,8 @@ public class OI {
     joy2button4.whenPressed(new ClimbRelease());
     // joy2button5.whileHeld(new ClimbNeosUp());
     // joy2button6.whileHeld(new ClimbNeosDown());
+
+    joy2button7.whenPressed(new ClimbRampSolenoidToggle());
     
 
 
@@ -133,6 +138,14 @@ public class OI {
       else{
         return joy2.getRawAxis(2);
       }
+  }
+  public double getJoy2Y(){
+    if(Math.abs(joy2.getRawAxis(1)) > 0.05){
+      return joy2.getRawAxis(1);
+    }
+    else{
+      return 0;
+    }
   }
 
 
